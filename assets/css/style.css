@@ -1,0 +1,419 @@
+@import "./form-style.css";
+@import "utility.css";
+
+/* Fonts import */
+@font-face {
+  font-family: "sf-pro-regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/SFPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "sf-pro-semibold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/SFPro-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "sf-pro-bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/SFPro-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "sf-pro-heavy";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/SFPro-Heavy.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+}
+
+:root {
+  --black-color: #000;
+  --button-normarl-color: rgba(250, 200, 62, 0.4);
+  --button-hover-color: rgba(250, 200, 62, 1);
+  --button-drop-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --sf-pro-regular: "sf-pro-regular";
+  --sf-pro-semibold: "sf-pro-semibold";
+  --sf-pro-bold: "sf-pro-bold";
+  --sf-pro-heavy: "sf-pro-heavy";
+}
+
+.main-heading {
+  font-family: var(--sf-pro-semibold);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 21px;
+  margin-top: 35px;
+}
+
+/* Step one */
+#step-one {
+  width: 534px;
+  min-height: 216px;
+  /* border: 1px solid cyan; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  /* display: none; */
+}
+
+.sub-heading {
+  font-family: var(--sf-pro-semibold);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#step-one-fields {
+  margin-top: 135px;
+  /* border: 1px solid magenta; */
+}
+
+.label-text {
+  font-family: var(--sf-pro-regular);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.3199999928474426px;
+  text-align: left;
+  /* text-transform: capitalize; */
+}
+
+.sf-form-control {
+  width: 258px !important;
+  height: 41px !important;
+  left: 274px !important;
+  border-radius: 8px !important;
+  border: 1px !important;
+  outline: 1px solid black !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 22px !important;
+  letter-spacing: -0.40799999237060547px !important;
+  text-align: left !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* Hide default radio buttons */
+input[type="radio"] {
+  display: none;
+}
+
+/* Style for custom radio buttons */
+.custom-radio {
+  display: inline-block;
+  font-family: var(--sf-pro-regular);
+  cursor: pointer;
+  padding: 6px 12px;
+  font-size: 24px;
+  font-weight: 400;
+  background: rgba(118, 118, 128, 0.12);
+  border-radius: 5px;
+  margin-right: 10px;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+}
+
+/* Highlight for selected option */
+input[type="radio"]:checked + label {
+  font-weight: 700;
+}
+
+/* already-launched */
+.already-launched,
+.fgic {
+  display: flex;
+  gap: 37px;
+  align-items: center;
+}
+
+/* Example of !important for next button */
+.next-button {
+  color: #000000 !important;
+  font-family: var(--sf-pro-regular) !important;
+  background: var(--button-normarl-color) !important;
+  box-shadow: var(--button-drop-shadow) !important;
+  display: inline-block !important;
+  padding: 14px 58px !important;
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 33.41px !important;
+  outline: none !important;
+  border: 0 !important;
+  transition: 0.3s !important;
+  cursor: pointer !important;
+}
+
+.next-button:hover {
+  background: var(--button-hover-color) !important;
+}
+
+/* Step two */
+#step-two {
+  width: 787px;
+  min-height: 673px;
+  /* border: 1px solid cyan; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  display: none;
+}
+
+#step-two-fields {
+  margin-top: 135px;
+}
+
+#desired-content {
+  width: 258px;
+  font-size: 21px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  padding: 10px;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+}
+
+#desired-content option {
+  font-family: var(--sf-pro-regular);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.3199999928474426px;
+  text-align: left;
+}
+
+.gsm-field {
+  /* layout */
+  width: 100px;
+  height: 34px;
+  padding: 6px 12px;
+  gap: 8px;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+  background: rgba(118, 118, 128, 0.12);
+
+  /* font design */
+  font-family: var(--sf-pro-regular);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+  text-align: center;
+}
+
+select#delivery-day {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+  background: rgba(118, 118, 128, 0.12);
+
+  /* font design */
+  font-family: var(--sf-pro-regular);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+  text-align: center;
+}
+
+#delivery-month {
+  /* layout */
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+  background: rgba(118, 118, 128, 0.12);
+
+  /* font design */
+  font-family: var(--sf-pro-regular);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+  text-align: center;
+}
+
+#delivery-year {
+  /* layout */
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+  background: rgba(118, 118, 128, 0.12);
+
+  /* font design */
+  font-family: var(--sf-pro-regular);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.40799999237060547px;
+  text-align: center;
+}
+
+.to {
+  font-family: var(--sf-pro-regular);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.3199999928474426px;
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.product-field {
+  width: 258px !important;
+}
+
+/* Step three */
+#step-three {
+  width: 662px;
+  min-height: 446px;
+  /* border: 1px solid cyan; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  display: none;
+}
+
+#step-three-fields {
+  margin-top: 235px;
+}
+
+/* Hide the default file input */
+#step-three-fields input[type="file"] {
+  display: none;
+}
+
+.upload-file-div {
+  width: 258px;
+  height: 112px;
+  text-align: center;
+  line-height: 170px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+}
+
+.upload-file-div img {
+  vertical-align: baseline;
+}
+
+#fabric-finishes {
+  width: 258px;
+  height: 112px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Thank you page */
+#thank-you-page {
+  width: 416px;
+  min-height: 487px;
+  /* border: 1px solid cyan; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  position: relative;
+  display: none;
+}
+
+#thank-you-button {
+  width: 337px;
+  height: 47px;
+  font-family: var(--sf-pro-regular);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 33px;
+  letter-spacing: 0em;
+  text-align: center;
+  background: #fac83e;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  outline: none;
+  border: 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* CSS to hide progress bar for finish step */
+fieldset.finish-step #progressbar {
+  display: none;
+}
+
+.selected-option {
+  font-family: var(--sf-pro-bold);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  background: rgba(118, 118, 128, 0.12);
+  padding: 6px 12px;
+  margin-top: 5px;
+  border-radius: 8px;
+  text-align: left;
+  display: table-caption;
+  margin-left: 30px;
+}
+
+.remove-option {
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: var(--sf-pro-regular);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.3199999928474426px;
+  text-align: left;
+}
+
+.percentage {
+  margin-left: 5px;
+}
+
+/* dispaly notification */
+.notification-container {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  display: none ;
+}
+
+.notification-content {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.progress {
+  margin-top: 10px;
+}
+
+/* CSS for the notification progress bar */
+#notification-progress {
+  background-color: #fac83e;
+}

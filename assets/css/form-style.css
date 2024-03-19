@@ -1,0 +1,130 @@
+html {
+  height: 100%;
+}
+
+#msform {
+  text-align: center;
+  position: relative;
+}
+
+.form-card {
+  text-align: left;
+}
+
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px 10px 0px;
+  float: right;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+  background-color: #000000;
+}
+
+.card {
+  z-index: 0;
+  border: none;
+  position: relative;
+}
+
+.steps {
+  font-size: 25px;
+  color: gray;
+  margin-bottom: 10px;
+  font-weight: normal;
+  text-align: right;
+}
+
+.fieldlabels {
+  color: gray;
+  text-align: left;
+}
+
+#progressbar {
+  overflow: hidden;
+  color: lightgrey;
+  padding-left: 0;
+  margin-bottom: 0;
+  width: 136px;
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translate(-40%, 0);
+}
+
+#progressbar .active {
+  color: #000000;
+}
+
+#progressbar li {
+  list-style-type: none;
+  width: 33.33%;
+  float: left;
+}
+
+#progressbar #account:before {
+  content: "";
+}
+
+#progressbar #personal:before {
+  content: "";
+}
+
+#progressbar #payment:before {
+  content: "";
+}
+
+#progressbar #confirm:before {
+  content: "";
+}
+
+#progressbar li:before {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: #fff;
+  border: 1px solid #848489;
+  border-radius: 50%;
+  /* margin: 0 auto 10px auto; */
+}
+
+#progressbar li:after {
+  content: "";
+  width: 75%;
+  height: 2px;
+  background: lightgray;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  z-index: -1;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #000000;
+}
+
+.progress {
+  height: 20px;
+}
+
+.progress-bar {
+  background-color: #673ab7;
+}
+
+.fit-image {
+  width: 100%;
+  object-fit: cover;
+}
