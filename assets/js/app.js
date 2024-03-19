@@ -160,7 +160,6 @@
       updatePercentages();
     });
 
-
     // Function to validate current step
     function validateStep(currentStep) {
       var isValid = true;
@@ -310,8 +309,21 @@
 
       // retrieve the form data
       var formData = $("#msform").serializeArray();
-      console.log(formData);
-      console.log(selectedOptions);
+
+      formData.push({
+        name: "desired_content",
+        value: JSON.stringify(selectedOptions),
+      });
+
+      // send ajax request to ../../inc/Rest_API.php file
+      $.ajax({
+        url: "../../inc/Rest_API.php",
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          console.log(response);
+        },
+      });
     });
   });
 })(jQuery);
