@@ -160,7 +160,7 @@
       updatePercentages();
     });
 
-    
+
     // Function to validate current step
     function validateStep(currentStep) {
       var isValid = true;
@@ -227,7 +227,7 @@
     // Function to generate options for years
     function generateYears() {
       var currentYear = new Date().getFullYear();
-      for (var i = 2000; i <= currentYear; i++) {
+      for (var i = currentYear; i <= 2030; i++) {
         $("#delivery-year").append(
           "<option value='" + i + "'>" + i + "</option>"
         );
