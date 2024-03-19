@@ -1,6 +1,6 @@
 (function ($) {
   $(document).ready(function () {
-    var current_fs, next_fs, previous_fs; //fieldsets
+    var current_fs, next_fs, previous_fs;
     var opacity;
     var current = 1;
     var steps = $("fieldset").length;
@@ -160,6 +160,7 @@
       updatePercentages();
     });
 
+    
     // Function to validate current step
     function validateStep(currentStep) {
       var isValid = true;
@@ -167,7 +168,9 @@
 
       // Check if any required fields are empty in the current step
       currentStep
-        .find('input[type="text"], input[type="email"], select')
+        .find(
+          'input[type="text"], input[type="email"], input[type="number"], select'
+        )
         .each(function () {
           if ($(this).val() === "") {
             isValid = false;
@@ -177,15 +180,29 @@
           }
         });
 
-      // Check if "Already launched?" field is empty
-      var alreadyLaunchedValue = currentStep
-        .find('input[name="lanced"]:checked')
-        .val();
-      if (!alreadyLaunchedValue) {
-        isValid = false;
-        currentStep.find(".already-launched").addClass("error");
-      } else {
-        currentStep.find(".already-launched").removeClass("error");
+      // Check if "Already launched?" field is empty only if it's step one
+      if (currentStep.hasClass("w-534")) {
+        var alreadyLaunchedValue = currentStep
+          .find('input[name="lanced"]:checked')
+          .val();
+        if (!alreadyLaunchedValue) {
+          isValid = false;
+          showNotification(
+            "Please select whether already launched or not",
+            5000
+          );
+        }
+      }
+
+      // Check if "Fabric" field is empty only if it's step two
+      if (currentStep.hasClass("w-787")) {
+        var fabricValue = currentStep
+          .find('input[name="fabric"]:checked')
+          .val();
+        if (!fabricValue) {
+          isValid = false;
+          showNotification("Please select fabric structure", 5000);
+        }
       }
 
       // Show/hide error message container based on validation result
