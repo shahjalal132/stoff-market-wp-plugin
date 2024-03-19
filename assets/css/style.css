@@ -33,7 +33,8 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
 }
 
 :root {
@@ -108,7 +109,8 @@
   letter-spacing: -0.40799999237060547px !important;
   text-align: left !important;
   padding: 10px !important;
-  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
 }
 
 /* Hide default radio buttons */
@@ -139,9 +141,13 @@ input[type="radio"]:checked + label {
 /* already-launched */
 .already-launched,
 .fgic {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 37px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 /* Example of !important for next button */
@@ -149,7 +155,8 @@ input[type="radio"]:checked + label {
   color: #000000 !important;
   font-family: var(--sf-pro-regular) !important;
   background: var(--button-normarl-color) !important;
-  box-shadow: var(--button-drop-shadow) !important;
+  -webkit-box-shadow: var(--button-drop-shadow) !important;
+          box-shadow: var(--button-drop-shadow) !important;
   display: inline-block !important;
   padding: 14px 58px !important;
   font-size: 32px !important;
@@ -157,6 +164,8 @@ input[type="radio"]:checked + label {
   line-height: 33.41px !important;
   outline: none !important;
   border: 0 !important;
+  -webkit-transition: 0.3s !important;
+  -o-transition: 0.3s !important;
   transition: 0.3s !important;
   cursor: pointer !important;
 }
@@ -350,10 +359,13 @@ select#delivery-day {
   background: #fac83e;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   outline: none;
   border: 0;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* CSS to hide progress bar for finish step */
@@ -405,7 +417,8 @@ fieldset.finish-step #progressbar {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
 }
 
@@ -416,4 +429,12 @@ fieldset.finish-step #progressbar {
 /* CSS for the notification progress bar */
 #notification-progress {
   background-color: #fac83e;
+}
+
+.e-con-inner {
+  margin: 0 !important;
+}
+
+.e-con>.e-con-inner {
+  max-width: 100% !important;
 }
