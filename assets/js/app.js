@@ -164,6 +164,7 @@
     function validateStep(currentStep) {
       var isValid = true;
       var errorMessageContainer = currentStep.find(".error-message");
+
       // Check if any required fields are empty in the current step
       currentStep
         .find('input[type="text"], input[type="email"], select')
@@ -175,11 +176,24 @@
             $(this).removeClass("error");
           }
         });
+
+      // Check if "Already launched?" field is empty
+      var alreadyLaunchedValue = currentStep
+        .find('input[name="lanced"]:checked')
+        .val();
+      if (!alreadyLaunchedValue) {
+        isValid = false;
+        currentStep.find(".already-launched").addClass("error");
+      } else {
+        currentStep.find(".already-launched").removeClass("error");
+      }
+
       // Show/hide error message container based on validation result
       if (!isValid) {
         // Call the function to show notification
         showNotification("Please fill up all fields", 5000);
       }
+
       return isValid;
     }
 
@@ -276,12 +290,11 @@
     // event listener for the "get-bids" button
     $("#get-bids").click(function (e) {
       e.preventDefault();
-      
+
       // retrieve the form data
       var formData = $("#msform").serializeArray();
       console.log(formData);
       console.log(selectedOptions);
-
     });
   });
 })(jQuery);
