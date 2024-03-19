@@ -438,11 +438,3 @@ fieldset.finish-step #progressbar {
 #notification-progress {
   background-color: #fac83e;
 }
-
-.e-con-inner {
-  margin: 0 !important;
-}
-
-.e-con > .e-con-inner {
-  max-width: 100% !important;
-}

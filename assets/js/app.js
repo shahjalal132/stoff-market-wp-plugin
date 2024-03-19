@@ -315,15 +315,23 @@
         value: JSON.stringify(selectedOptions),
       });
 
-      // send ajax request to ../../inc/Rest_API.php file
-      $.ajax({
-        url: "../../inc/Rest_API.php",
+      console.log(formData);
+
+      // send ajax request
+      /* $.ajax({
+        url: "process-data.php",
         type: "POST",
         data: formData,
         success: function (response) {
           console.log(response);
+
+          alert("Form data submitted successfully.");
         },
-      });
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText); // Log any errors
+          alert("Error submitting form data. Please try again.");
+        },
+      }); */
     });
   });
 })(jQuery);
