@@ -99,7 +99,7 @@ function stoff_form_shortcode_callbadk() {
                                     <!-- fabric structure -->
                                     <div class="fabric-section item-center gap-30 d-grid ss-gic mt-50">
                                         <label for="fabric class=" class="label-text">What’s the fabric
-                                            <strong>structure?</strong></label>
+                                            <span class="sm-bold">structure?</span></label>
 
                                         <div class="fabric-structure fgic">
                                             <div>
@@ -119,7 +119,7 @@ function stoff_form_shortcode_callbadk() {
                                     <!-- desired content -->
                                     <div class="desired-content d-grid gap-30 item-center ss-gic mt-50">
                                         <label for="desired-content" class="label-text">Choose your desired
-                                            <strong>content</strong></label>
+                                            <span class="sm-bold">content</span></label>
                                         <select name="desired-content" id="desired-content">
                                             <option value="">Select...</option>
                                             <option value="linen">Linen</option>
@@ -178,13 +178,13 @@ function stoff_form_shortcode_callbadk() {
                                     <!-- GSM -->
                                     <div class="gsm d-grid item-center gap-30 ss-gic mt-50">
                                         <label for="gsm" class="label-text">What’s the weight
-                                            <strong>(GSM)?</strong></label>
+                                            <span class="sm-bold">(GSM)?</span></label>
                                         <input type="number" class="gsm-field" placeholder="000" name="gsm" id="gsm">
                                     </div>
 
                                     <!-- approx -->
                                     <div class="approx d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="approx" class="label-text">How many <strong>yards</strong> do you
+                                        <label for="approx" class="label-text">How many <span class="sm-bold">yards</span> do you
                                             approx.
                                             need?</label>
                                         <input type="number" class="gsm-field" placeholder="0000" name="approx" id="approx">
@@ -192,8 +192,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- target -->
                                     <div class="target d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="target" class="label-text">What’s the target USD <strong>cost per
-                                                yard?</strong></label>
+                                        <label for="target" class="label-text">What’s the target USD <span class="sm-bold">cost per
+                                                yard?</span></label>
                                         <div class="d-flex item-center gap-11">
                                             <input type="number" class="gsm-field" placeholder="0.00" name="target-from"
                                                 id="target">
@@ -205,8 +205,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- delivery -->
                                     <div class="delivery d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="delivery" class="label-text">What’s the <strong>target delivery
-                                                date?</strong></label>
+                                        <label for="delivery" class="label-text">What’s the <span class="sm-bold">target delivery
+                                                date?</span></label>
                                         <div class="d-flex item-center sm-gap-5">
                                             <select name="delivery-day" id="delivery-day">
                                                 <option value="">Day</option>
@@ -234,15 +234,15 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- ORDERS-PER-YEAR -->
                                     <div class="orders-per-year d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="orders-per-year" class="label-text"># of expected <strong>orders per
-                                                year?</strong></label>
+                                        <label for="orders-per-year" class="label-text"># of expected <span class="sm-bold">orders per
+                                                year?</span></label>
                                         <input type="number" class="gsm-field" placeholder="00" name="orders-per-year"
                                             id="orders-per-year">
                                     </div>
 
                                     <!-- Product field -->
                                     <div class="product d-grid gap-30 item-center ss-gic mt-50">
-                                        <label for="product" class="label-text">What’s the <strong>end product?</strong>
+                                        <label for="product" class="label-text">What’s the <span class="sm-bold">end product?</span>
                                             e.g.
                                             t-shirt</label>
                                         <input type="text" class="sf-form-control product-field" name="product"
@@ -265,7 +265,7 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- UPLOAD -->
                                     <div class="upload-file d-grid gap-76 item-top ts-gic mt-50">
-                                        <label for="upload" class="label-text">Upload <strong>fabric design</strong> <br>
+                                        <label for="upload" class="label-text">Upload <span class="sm-bold">fabric design</span> <br>
                                             *optional</label>
                                         <div class="upload-file-div">
                                             <input type="file" id="fileInput" name="fileInput" />
@@ -278,8 +278,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- fabric finishes -->
                                     <div class="fabric-finishes d-grid gap-76 item-top ts-gic mt-120">
-                                        <label for="fabric-finishes" class="label-text">List the desired <strong>fabric
-                                                finishes</strong> <br> *optional </label>
+                                        <label for="fabric-finishes" class="label-text">List the desired <span class="sm-bold">fabric
+                                                finishes</span> <br> *optional </label>
                                         <textarea name="fabric-finishes" id="fabric-finishes"></textarea>
                                     </div>
 

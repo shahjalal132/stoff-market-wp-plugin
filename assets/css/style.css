@@ -87,13 +87,13 @@
 }
 
 .label-text {
+  color: var(--black-color) !important;
   font-family: var(--sf-pro-regular);
   font-size: 24px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.3199999928474426px;
   text-align: left;
-  /* text-transform: capitalize; */
 }
 
 .sf-form-control {
@@ -150,7 +150,7 @@ input[type="radio"]:checked + label {
   align-items: center;
 }
 
-.already-launched{
+.already-launched {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,7 +247,7 @@ select#delivery-day {
 
   /* font design */
   font-family: var(--sf-pro-regular) !important;
-  font-size: 21px !important; 
+  font-size: 21px !important;
   font-weight: 400 !important;
   line-height: 22px !important;
   letter-spacing: -0.40799999237060547px !important;
@@ -334,7 +334,7 @@ select#delivery-day {
   border-radius: 8px;
 }
 
-.upload-file-div label{
+.upload-file-div label {
   line-height: inherit !important;
 }
 
@@ -447,4 +447,8 @@ fieldset.finish-step #progressbar {
 /* CSS for the notification progress bar */
 #notification-progress {
   background-color: #fac83e;
+}
+
+.sm-bold {
+  font-family: var(--sf-pro-bold);
 }
