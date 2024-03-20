@@ -184,7 +184,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- approx -->
                                     <div class="approx d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="approx" class="label-text">How many <span class="sm-bold">yards</span> do you
+                                        <label for="approx" class="label-text">How many <span class="sm-bold">yards</span>
+                                            do you
                                             approx.
                                             need?</label>
                                         <input type="number" class="gsm-field" placeholder="0000" name="approx" id="approx">
@@ -192,7 +193,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- target -->
                                     <div class="target d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="target" class="label-text">What’s the target USD <span class="sm-bold">cost per
+                                        <label for="target" class="label-text">What’s the target USD <span
+                                                class="sm-bold">cost per
                                                 yard?</span></label>
                                         <div class="d-flex item-center gap-11">
                                             <input type="number" class="gsm-field" placeholder="0.00" name="target-from"
@@ -205,7 +207,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- delivery -->
                                     <div class="delivery d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="delivery" class="label-text">What’s the <span class="sm-bold">target delivery
+                                        <label for="delivery" class="label-text">What’s the <span class="sm-bold">target
+                                                delivery
                                                 date?</span></label>
                                         <div class="d-flex item-center sm-gap-5">
                                             <select name="delivery-day" id="delivery-day">
@@ -234,7 +237,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- ORDERS-PER-YEAR -->
                                     <div class="orders-per-year d-grid item-center gap-30 ss-gic mt-50">
-                                        <label for="orders-per-year" class="label-text"># of expected <span class="sm-bold">orders per
+                                        <label for="orders-per-year" class="label-text"># of expected <span
+                                                class="sm-bold">orders per
                                                 year?</span></label>
                                         <input type="number" class="gsm-field" placeholder="00" name="orders-per-year"
                                             id="orders-per-year">
@@ -242,7 +246,8 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- Product field -->
                                     <div class="product d-grid gap-30 item-center ss-gic mt-50">
-                                        <label for="product" class="label-text">What’s the <span class="sm-bold">end product?</span>
+                                        <label for="product" class="label-text">What’s the <span class="sm-bold">end
+                                                product?</span>
                                             e.g.
                                             t-shirt</label>
                                         <input type="text" class="sf-form-control product-field" name="product"
@@ -265,47 +270,32 @@ function stoff_form_shortcode_callbadk() {
 
                                     <!-- UPLOAD -->
                                     <div class="upload-file d-grid gap-76 item-top ts-gic mt-50">
-                                        <label for="upload" class="label-text">Upload <span class="sm-bold">fabric design</span> <br>
+                                        <label for="upload" class="label-text">Upload <span class="sm-bold">fabric
+                                                design</span> <br>
                                             *optional</label>
                                         <div class="upload-file-div">
                                             <input type="file" id="fileInput" name="fileInput" />
                                             <label for="fileInput">
                                                 <!-- Add your custom icon here -->
-                                                <img src="<?php echo STOFF_PLUGIN_URI . '/assets/images/UploadSimple.png'?>" alt="Upload Icon">
+                                                <img src="<?php echo STOFF_PLUGIN_URI . '/assets/images/UploadSimple.png' ?>"
+                                                    alt="Upload Icon">
                                             </label>
                                         </div>
                                     </div>
 
                                     <!-- fabric finishes -->
                                     <div class="fabric-finishes d-grid gap-76 item-top ts-gic mt-120">
-                                        <label for="fabric-finishes" class="label-text">List the desired <span class="sm-bold">fabric
+                                        <label for="fabric-finishes" class="label-text">List the desired <span
+                                                class="sm-bold">fabric
                                                 finishes</span> <br> *optional </label>
                                         <textarea name="fabric-finishes" id="fabric-finishes"></textarea>
                                     </div>
 
                                 </div>
 
-                                <input type="submit" name="next" id="get-bids" class="next next-button mb-208 mt-128"
+                                <input type="submit" name="next" id="get-bids" class="next-button mb-208 mt-128"
                                     value="Get Bids" />
 
-                            </fieldset>
-
-                            <!-- finish step -->
-                            <fieldset class="finish-step">
-
-                                <!-- Sub heading -->
-                                <h2 class="sub-heading">Thank you</h2>
-
-                                <div id="thank-you-contents">
-                                    <p class="label-text text-center mt-50">Your fabric order has been submitted.</p>
-                                    <p class="label-text text-center mt-50">We will get back to your shortly about <br> the
-                                        status of
-                                        your auction & order.</p>
-                                </div>
-
-                                <!-- Next Button -->
-                                <button type="button" id="thank-you-button" class="mt-242 mb-282">Create New
-                                    Auction</button>
                             </fieldset>
 
                         </form>
@@ -321,4 +311,36 @@ function stoff_form_shortcode_callbadk() {
     <?php return ob_get_clean();
 }
 
+// main form shortcode
 add_shortcode( 'stoff_form_shortcode', 'stoff_form_shortcode_callbadk' );
+
+
+function stoff_thankyou_page() {
+    ob_start();
+    ?>
+
+    <!-- main heading -->
+    <h1 class="main-heading">STOFF MARKET</h1>
+
+    <!-- finish step -->
+    <fieldset class="finish-step">
+
+        <!-- Sub heading -->
+        <h2 class="sub-heading">Thank you</h2>
+
+        <div id="thank-you-contents">
+            <p class="label-text text-center mt-50">Your fabric order has been submitted.</p>
+            <p class="label-text text-center mt-50">We will get back to your shortly about <br> the
+                status of
+                your auction & order.</p>
+        </div>
+
+        <!-- Next Button -->
+        <button type="button" id="thank-you-button" class="mt-242 mb-282">Create New
+            Auction</button>
+    </fieldset>
+
+    <?php return ob_get_clean();
+}
+// thank you page shortcode
+add_shortcode( 'stoff_thankyou_page', 'stoff_thankyou_page' );

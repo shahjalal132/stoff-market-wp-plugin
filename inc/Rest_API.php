@@ -17,7 +17,7 @@ if ( !empty ( $_POST ) ) {
     $delivery_year    = $data['delivery-year'] ?? '';
     $orders_per_year  = $data['orders-per-year'] ?? '';
     $product          = $data['product'] ?? '';
-    $fabric_finish    = $data['fabric-finish'] ?? '';
+    $fabric_finish    = $data['fabric-finishes'] ?? '';
     $desired_contents = $data['desired_contents'] ?? '';
 
 

@@ -452,3 +452,7 @@ fieldset.finish-step #progressbar {
 .sm-bold {
   font-family: var(--sf-pro-bold);
 }
+
+fieldset.finish-step {
+  margin-top: 100px;
+}
