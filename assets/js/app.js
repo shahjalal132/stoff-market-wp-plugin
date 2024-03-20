@@ -327,13 +327,28 @@
         url: "/stoff-form/",
         type: "POST",
         data: formData,
+        beforeSend: function () {
+          // Show loading spinner before AJAX request
+          $("#loading-spinner").show();
+        },
         success: function (response) {
           console.log(response);
+
+          // Hide loading spinner after AJAX request is successful
+          $("#loading-spinner").hide();
+
           // redirect to thank you page
           window.location.href = "/thank-you/";
         },
         error: function (xhr, status, error) {
+          // Hide loading spinner if AJAX request encounters an error
+          $("#loading-spinner").hide();
+
           console.error(xhr.responseText);
+        },
+        complete: function () {
+          // Hide loading spinner after AJAX request is complete (regardless of success or failure)
+          $("#loading-spinner").hide();
         },
       });
     });
