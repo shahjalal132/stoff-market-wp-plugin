@@ -179,6 +179,15 @@
           }
         });
 
+      // Email validation specifically for Step One
+      if (currentStep.hasClass("w-534")) {
+        var emailValue = currentStep.find("#email").val();
+        if (!validateEmail(emailValue)) {
+          isValid = false;
+          showNotification("Please enter a valid email address", 5000);
+        }
+      }
+
       // Check if "Already launched?" field is empty only if it's step one
       if (currentStep.hasClass("w-534")) {
         var alreadyLaunchedValue = currentStep
@@ -211,6 +220,12 @@
       }
 
       return isValid;
+    }
+
+    // Function to validate email
+    function validateEmail(email) {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
     }
 
     // Function to generate options for days
