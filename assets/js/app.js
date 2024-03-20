@@ -318,6 +318,28 @@
       resetForm();
     });
 
+    const uploadInput = document.getElementById("design_upload");
+    const imageInput = document.getElementById("image_base64");
+
+    uploadInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          const base64Data = e.target.result;
+          imageInput.value = base64Data;
+
+          // console.log( base64Data );
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        imageInput.value = "";
+      }
+    });
+
     // event listener for the "get-bids" button
     $("#get-bids").click(function (e) {
       e.preventDefault();
@@ -328,6 +350,11 @@
       // log the form data
       var selectOption = $(".selected-option").text();
 
+      // remove x from beginning
+      selectOption = selectOption.replace("x", "");
+
+      var imageBase64 = $("#image_base64").val();
+
       // convert selectOption text to array with space as delimiter
       selectOption = selectOption.split(" ");
 
@@ -336,6 +363,9 @@
 
       // push to formData array the selectOption array
       formData.push({ name: "desired_contents", value: selectOption });
+      formData.push({ name: "fabric_design", value: imageBase64 });
+
+      // place base64 data after image upload
 
       // send ajax request
       $.ajax({
@@ -347,7 +377,6 @@
           $("#loading-spinner").show();
         },
         success: function (response) {
-
           // log the response
           // console.log(response);
 
@@ -355,7 +384,7 @@
           $("#loading-spinner").hide();
 
           // redirect to thank you page
-          window.location.href = "/thank-you/";
+          // window.location.href = "/thank-you/";
         },
         error: function (xhr, status, error) {
           // Hide loading spinner if AJAX request encounters an error

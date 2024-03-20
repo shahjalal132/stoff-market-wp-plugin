@@ -36,6 +36,7 @@ function stoff_form_shortcode_callbadk() {
                         <!-- form start -->
                         <form id="msform" method="POST" enctype="multipart/form-data">
 
+
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="account"></li>
@@ -287,13 +288,14 @@ function stoff_form_shortcode_callbadk() {
                                                 design</span> <br>
                                             *optional</label>
                                         <div class="upload-file-div">
-                                            <input type="file" id="fileInput" name="fileInput" />
-                                            <label for="fileInput">
+                                            <input type="file" id="design_upload" name="design_upload" />
+                                            <label for="design_upload">
                                                 <!-- Add your custom icon here -->
                                                 <img src="<?php echo STOFF_PLUGIN_URI . '/assets/images/UploadSimple.png' ?>"
                                                     alt="Upload Icon">
                                             </label>
                                         </div>
+                                        <input type="hidden" id="image_base64" />
                                     </div>
 
                                     <!-- fabric finishes -->

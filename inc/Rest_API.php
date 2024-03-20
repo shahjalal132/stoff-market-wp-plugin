@@ -10,8 +10,10 @@ require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
 if ( !empty ( $_POST ) ) {
     $data = $_POST;
 
+    print_r($data);
+
     $website          = $data['website'] ?? '';
-    $lanced           = $data['lanced'] ?? '';
+    $launched         = $data['lanced'] ?? '';
     $email            = $data['email'] ?? '';
     $fabric           = $data['fabric'] ?? '';
     $gsm              = $data['gsm'] ?? '';
@@ -27,9 +29,13 @@ if ( !empty ( $_POST ) ) {
     $fabric_finish    = $data['fabric-finishes'] ?? '';
     $desired_contents = $data['desired_contents'] ?? '';
     $anything_else    = $data['anything-else'] ?? '';
+    $fabric_design    = $data['fabric_design'] ?? '';
+
+    // Decode the base64 data
+    $decoded_image = base64_decode( $fabric_design );
 
     // Check if any required field is empty
-    if ( !empty ( $website ) && !empty ( $lanced ) && !empty ( $email ) && !empty ( $fabric ) && !empty ( $gsm ) && !empty ( $approx ) && !empty ( $target_from ) && !empty ( $target_to ) && !empty ( $list_of_color ) && !empty ( $delivery_day ) && !empty ( $delivery_month ) && !empty ( $delivery_year ) && !empty ( $orders_per_year ) && !empty ( $product ) && !empty ( $desired_contents ) ) {
+    if ( !empty ( $website ) && !empty ( $email ) ) {
 
         $mail = new PHPMailer( true );
 
@@ -39,19 +45,23 @@ if ( !empty ( $_POST ) ) {
         try {
 
             // Set email parameters
-            $mail->setFrom( $email, 'Mailer' );
+            $mail->setFrom( $email, $website );
             // $mail->addAddress( $admin_email, 'Recipient' );
             $mail->addAddress( 'rjshahjalal132@gmail.com', 'Recipient' );
             $mail->isHTML( true );
             // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
+
+            // Attach the image
+            $mail->addStringAttachment( $decoded_image, 'fabric_design.jpg', 'base64', 'image/jpeg' );
 
             // Email subject
             $mail->Subject = "A new Stoff Market Inquiry came from $website";
 
             // Construct HTML for table
             $tableRows = "";
-            $labels    = array( "Website", "Lanced", "Email", "Fabric", "GSM", "Approximate Quantity", "Target From", "Target To", "Lis of color(s)", "Delivery Date", "Orders Per Year", "Product", "Fabric Finish", "Desired Contents", "Anything else we should know?" );
-            $values    = array( $website, $lanced, $email, $fabric, $gsm, $approx, $target_from, $target_to, $list_of_color, "$delivery_day/$delivery_month/$delivery_year", $orders_per_year, $product, $fabric_finish, $desired_contents, $anything_else );
+            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx. need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What’s the end product", "Fabric Finish", "Anything else we should know?" );
+
+            $values = array( $website, $launched, $email, $fabric, $desired_contents, $gsm, $approx, "$target_from -to- $target_to", $list_of_color, "$delivery_day $delivery_month $delivery_year", $orders_per_year, $product, $fabric_finish, $anything_else );
 
             // Iterate through labels and values to construct table rows
             for ( $i = 0; $i < count( $labels ); $i++ ) {
