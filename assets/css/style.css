@@ -150,6 +150,16 @@ input[type="radio"]:checked + label {
   align-items: center;
 }
 
+.already-launched{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 37px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 /* Example of !important for next button */
 .next-button {
   color: #000000 !important;

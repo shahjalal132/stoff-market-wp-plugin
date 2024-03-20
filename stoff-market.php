@@ -33,4 +33,3 @@ if ( !defined( 'STOFF_PLUGIN_URI' ) ) {
 require_once STOFF_PLUGIN_PATH . '/inc/Enqueue_Assets.php';
 require_once STOFF_PLUGIN_PATH . '/inc/Form_Shortcode.php';
 require_once STOFF_PLUGIN_PATH . '/inc/Rest_API.php';
-require_once STOFF_PLUGIN_PATH . '/assets/js/process-data.php';

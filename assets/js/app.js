@@ -318,8 +318,8 @@
       console.log(formData);
 
       // send ajax request
-      /* $.ajax({
-        url: "process-data.php",
+      $.ajax({
+        url: "/stoff-form/",
         type: "POST",
         data: formData,
         success: function (response) {
@@ -331,7 +331,7 @@
           console.error(xhr.responseText); // Log any errors
           alert("Error submitting form data. Please try again.");
         },
-      }); */
+      });
     });
   });
 })(jQuery);

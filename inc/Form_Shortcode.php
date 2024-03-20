@@ -285,7 +285,7 @@ function stoff_form_shortcode_callbadk() {
 
                                 </div>
 
-                                <input type="submit" name="next" id="get-bids" class="next next-button mb-208 mt-128"
+                                <input type="submit" name="next" id="get-bids" class="next-button mb-208 mt-128"
                                     value="Get Bids" />
 
                             </fieldset>
