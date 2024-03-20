@@ -310,26 +310,26 @@
       // retrieve the form data
       var formData = $("#msform").serializeArray();
 
-      formData.push({
-        name: "desired_content",
-        value: JSON.stringify(selectedOptions),
-      });
+      // log the form data
+      var selectOption = $(".selected-option").text();
 
-      console.log(formData);
+      // convert selectOption text to array with space as delimiter
+      selectOption = selectOption.split(" ");
+
+      // remove first ''
+      selectOption.shift();
+
+      // push to formData array the selectOption array
+      formData.push({ name: "desired_contents", value: selectOption });
 
       // send ajax request
       $.ajax({
         url: "/stoff-form/",
         type: "POST",
         data: formData,
-        success: function (response) {
-          console.log(response);
-
-          alert("Form data submitted successfully.");
-        },
+        success: function (response) {},
         error: function (xhr, status, error) {
-          console.error(xhr.responseText); // Log any errors
-          alert("Error submitting form data. Please try again.");
+          console.error(xhr.responseText);
         },
       });
     });
