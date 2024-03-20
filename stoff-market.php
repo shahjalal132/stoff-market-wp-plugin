@@ -26,7 +26,8 @@ if ( !defined( 'STOFF_PLUGIN_URI' ) ) {
     define( 'STOFF_PLUGIN_URI', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 }
 
-
+// require autoloader
+require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
 
 
 // require files
