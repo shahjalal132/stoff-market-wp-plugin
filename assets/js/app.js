@@ -352,5 +352,10 @@
         },
       });
     });
+
+    // when click id="thank-you-button" then redirect to /stoff-form/ page
+    $("#thank-you-button").click(function () {
+      window.location.href = "/stoff-form/";
+    });
   });
 })(jQuery);
