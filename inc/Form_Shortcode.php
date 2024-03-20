@@ -10,6 +10,11 @@ function stoff_form_shortcode_callbadk() {
         <!-- main heading -->
         <h1 class="main-heading">STOFF MARKET</h1>
 
+        <!-- loading spinner -->
+        <div id="loading-spinner" style="display: none;">
+            <img src="<?php echo STOFF_PLUGIN_URI; ?>/assets/images/Spinner.gif" alt="Loading..." />
+        </div>
+
         <!-- Notification container -->
         <div id="notification" class="notification-container">
             <div class="notification-content">
@@ -20,6 +25,7 @@ function stoff_form_shortcode_callbadk() {
                 </div>
             </div>
         </div>
+
 
         <div class="container-fluid">
             <div class="row justify-content-center">

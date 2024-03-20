@@ -327,7 +327,11 @@
         url: "/stoff-form/",
         type: "POST",
         data: formData,
-        success: function (response) {},
+        success: function (response) {
+          console.log(response);
+          // redirect to thank you page
+          window.location.href = "/thank-you/";
+        },
         error: function (xhr, status, error) {
           console.error(xhr.responseText);
         },
