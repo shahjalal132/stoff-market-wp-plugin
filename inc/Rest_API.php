@@ -26,6 +26,16 @@ if ( !empty ( $_POST ) ) {
         $to      = 'rjshahjalal132@gmail.com'; // Change this to your email address
         $subject = "A new Stoff Market Inquiry came from $website";
 
+        // Construct HTML for table
+        $tableRows = "";
+        $labels    = array( "Website", "Lanced", "Email", "Fabric", "GSM", "Approximate Quantity", "Target From", "Target To", "Delivery Date", "Orders Per Year", "Product", "Fabric Finish", "Desired Contents" );
+        $values    = array( $website, $lanced, $email, $fabric, $gsm, $approx, $target_from, $target_to, "$delivery_day/$delivery_month/$delivery_year", $orders_per_year, $product, $fabric_finish, $desired_contents );
+
+        // Iterate through labels and values to construct table rows
+        for ( $i = 0; $i < count( $labels ); $i++ ) {
+            $tableRows .= "<tr><td><strong>$labels[$i]:</strong></td><td>$values[$i]</td></tr>";
+        }
+
         // Merge all data into $message
         $message = "
             <!DOCTYPE html>
@@ -50,32 +60,33 @@ if ( !empty ( $_POST ) ) {
                         border-radius: 5px;
                     }
                     h2 {
-                        color: #333;
+                        color: #fff;
+                        background-color: #fac83e;
+                        text-align: center;
+                        padding: 10px;
+                        margin-bottom: 10px;
                     }
-                    p {
-                        margin: 0 0 10px;
+                    table {
+                        width: 100%;
                     }
-                    .data-label {
+                    table tr td {
+                        padding: 5px;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    table tr td:first-child {
                         font-weight: bold;
+                        width: 30%;
                     }
                 </style>
             </head>
             <body>
                 <div class='container'>
                     <h2>Stoff Market Inquiry Details</h2>
-                    <p><span class='data-label'>Website:</span> $website</p>
-                    <p><span class='data-label'>Lanced:</span> $lanced</p>
-                    <p><span class='data-label'>Email:</span> $email</p>
-                    <p><span class='data-label'>Fabric:</span> $fabric</p>
-                    <p><span class='data-label'>GSM:</span> $gsm</p>
-                    <p><span class='data-label'>Approximate Quantity:</span> $approx</p>
-                    <p><span class='data-label'>Target From:</span> $target_from</p>
-                    <p><span class='data-label'>Target To:</span> $target_to</p>
-                    <p><span class='data-label'>Delivery Date:</span> $delivery_day/$delivery_month/$delivery_year</p>
-                    <p><span class='data-label'>Orders Per Year:</span> $orders_per_year</p>
-                    <p><span class='data-label'>Product:</span> $product</p>
-                    <p><span class='data-label'>Fabric Finish:</span> $fabric_finish</p>
-                    <p><span class='data-label'>Desired Content:</span> $desired_contents</p>
+                    <table>
+                        <tbody>
+                            $tableRows
+                        </tbody>
+                    </table>
                 </div>
             </body>
             </html>
