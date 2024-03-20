@@ -33,10 +33,14 @@ if ( !empty ( $_POST ) ) {
 
         $mail = new PHPMailer( true );
 
+        // get admin email
+        $admin_email = get_option( 'admin_email' );
+
         try {
 
             // Set email parameters
             $mail->setFrom( $email, 'Mailer' );
+            // $mail->addAddress( $admin_email, 'Recipient' );
             $mail->addAddress( 'rjshahjalal132@gmail.com', 'Recipient' );
             $mail->isHTML( true );
             // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
