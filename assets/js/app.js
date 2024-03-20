@@ -347,6 +347,10 @@
           $("#loading-spinner").show();
         },
         success: function (response) {
+
+          // log the response
+          // console.log(response);
+
           // Hide loading spinner after AJAX request is successful
           $("#loading-spinner").hide();
 
