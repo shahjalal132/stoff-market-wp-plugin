@@ -464,3 +464,13 @@ div#loading-spinner {
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
+
+#anything-else {
+  width: 258px;
+  height: 112px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}

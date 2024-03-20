@@ -211,6 +211,13 @@ function stoff_form_shortcode_callbadk() {
                                         </div>
                                     </div>
 
+                                    <!-- list the color -->
+                                    <div class="list-color d-grid item-center gap-30 ss-gic mt-50">
+                                        <label for="list-color" class="label-text">List the <span
+                                                class="sm-bold">color(s)</span></label>
+                                        <input type="text" class="sf-form-control" name="list-of-color" id="list-color">
+                                    </div>
+
                                     <!-- delivery -->
                                     <div class="delivery d-grid item-center gap-30 ss-gic mt-50">
                                         <label for="delivery" class="label-text">What’s the <span class="sm-bold">target
@@ -295,6 +302,12 @@ function stoff_form_shortcode_callbadk() {
                                                 class="sm-bold">fabric
                                                 finishes</span> <br> *optional </label>
                                         <textarea name="fabric-finishes" id="fabric-finishes"></textarea>
+                                    </div>
+
+                                    <!-- Anything else? -->
+                                    <div class="anything-else d-grid gap-76 item-top ts-gic mt-120">
+                                        <label for="anything-else" class="label-text">Anything else we should know?</label>
+                                        <textarea name="anything-else" id="anything-else"></textarea>
                                     </div>
 
                                 </div>
