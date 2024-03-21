@@ -328,6 +328,9 @@
       // log the form data
       var selectOption = $(".selected-option").text();
 
+      // remove x from beginning
+      selectOption = selectOption.replace("x", "");
+
       // convert selectOption text to array with space as delimiter
       selectOption = selectOption.split(" ");
 
@@ -347,7 +350,6 @@
           $("#loading-spinner").show();
         },
         success: function (response) {
-
           // log the response
           // console.log(response);
 
@@ -355,7 +357,7 @@
           $("#loading-spinner").hide();
 
           // redirect to thank you page
-          window.location.href = "/thank-you/";
+          //window.location.href = "/thank-you/";
         },
         error: function (xhr, status, error) {
           // Hide loading spinner if AJAX request encounters an error

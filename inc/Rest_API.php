@@ -11,7 +11,7 @@ if ( !empty ( $_POST ) ) {
     $data = $_POST;
 
     $website          = $data['website'] ?? '';
-    $lanced           = $data['lanced'] ?? '';
+    $launched         = $data['lanced'] ?? '';
     $email            = $data['email'] ?? '';
     $fabric           = $data['fabric'] ?? '';
     $gsm              = $data['gsm'] ?? '';
