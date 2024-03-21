@@ -282,9 +282,10 @@
 
     // Function to reset the form and go back to step one
     function resetForm() {
-
       // clear all input fields
-      $('input[type="text"], input[type="email"], input[type="number"], select').val('');
+      $(
+        'input[type="text"], input[type="email"], input[type="number"], select'
+      ).val("");
 
       // Remove error classes
       $('input[type="text"], input[type="email"], select').removeClass("error");
@@ -315,7 +316,6 @@
 
     // Event listener for the "thank-you-button"
     $(document).on("click", "#thank-you-button", function () {
-      
       // Reset the form and go back to step one
       resetForm();
 
@@ -323,39 +323,27 @@
       window.location.href = "/";
     });
 
-    // Select the design upload input element
     const uploadInput = document.getElementById("design_upload");
-
-    // Select the input element that will store the base64 encoded image data
     const imageInput = document.getElementById("image_base64");
+    const uploadLabel = document.getElementById("upload_image_label");
 
-    // Add an event listener to the upload input for when the file selection changes
     uploadInput.addEventListener("change", (event) => {
-      // Get the first selected file from the event object
       const file = event.target.files[0];
 
-      // Check if a file is actually selected
       if (file) {
-        // Create a new FileReader object
         const reader = new FileReader();
 
-        // Define a function to handle the onload event of the FileReader
         reader.onload = (e) => {
-          // Get the base64 encoded data from the event target result
           const base64Data = e.target.result;
 
-          // Set the value of the image_base64 input element to the base64 encoded data
           imageInput.value = base64Data;
-
-          // OPTIONAL: Uncomment the following line to see the base64 data in the console for debugging purposes
-          // console.log(base64Data);
+          uploadLabel.textContent = file.name;
         };
 
-        // Start reading the selected file as a data URL (base64 encoded)
         reader.readAsDataURL(file);
       } else {
-        // If no file is selected, clear the value of the image_base64 input element
         imageInput.value = "";
+        uploadLabel.textContent = "Choose File";
       }
     });
 

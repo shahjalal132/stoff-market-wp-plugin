@@ -289,7 +289,7 @@ function stoff_form_shortcode_callbadk() {
                                             *optional</label>
                                         <div class="upload-file-div">
                                             <input type="file" id="design_upload" name="design_upload" />
-                                            <label for="design_upload">
+                                            <label for="design_upload" id="upload_image_label">
                                                 <!-- Add your custom icon here -->
                                                 <img src="<?php echo STOFF_PLUGIN_URI . '/assets/images/UploadSimple.png' ?>"
                                                     alt="Upload Icon">
