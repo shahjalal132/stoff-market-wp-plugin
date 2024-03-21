@@ -400,7 +400,7 @@
           $("#loading-spinner").hide();
 
           // redirect to thank you page
-          window.location.href = "/thank-you/";
+          // window.location.href = "/thank-you/";
         },
         error: function (xhr, status, error) {
           // Hide loading spinner if AJAX request encounters an error
