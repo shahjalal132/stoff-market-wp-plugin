@@ -47,7 +47,7 @@ if ( !empty ( $_POST ) ) {
             // $mail->addAddress( $admin_email );
             $mail->addAddress( 'rjshahjalal132@gmail.com' );
             $mail->isHTML( true );
-            $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
+            // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
             // $mail->addAttachment( $fabric_design );
 
             // Email subject
