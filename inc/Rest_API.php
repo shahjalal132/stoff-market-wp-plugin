@@ -30,13 +30,6 @@ if ( !empty ( $_POST ) ) {
     $anything_else    = $data['anything-else'] ?? '';
     $fabric_design    = $data['fabric_design'] ?? '';
 
-    // Decode the base64 data
-    $decoded_image = base64_decode( $fabric_design );
-    $fabric_design = $data['fabric_design'] ?? '';
-
-    // decode the $fabric_design bash64 data
-    $fabric_design = base64_decode( $fabric_design );
-
     // Check if any required field is empty
     if ( !empty ( $website ) && !empty ( $email ) ) {
 

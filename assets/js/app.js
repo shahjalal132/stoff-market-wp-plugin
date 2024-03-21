@@ -323,6 +323,9 @@
       window.location.href = "/";
     });
 
+    // define file name variable
+    var fileName = "";
+
     const uploadInput = document.getElementById("design_upload");
     const imageInput = document.getElementById("image_base64");
     const uploadLabel = document.getElementById("upload_image_label");
@@ -331,6 +334,9 @@
       const file = event.target.files[0];
 
       if (file) {
+
+        fileName = file.name;
+
         const reader = new FileReader();
 
         reader.onload = (e) => {
@@ -373,6 +379,9 @@
 
       // push to formData array the imageBase64
       formData.push({ name: "fabric_design", value: imageBase64 });
+
+      // push to formData array the fileName
+      formData.push({ name: "fabric_fileName", value: fileName });
 
       // send ajax request
       $.ajax({
