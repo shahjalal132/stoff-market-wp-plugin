@@ -54,7 +54,7 @@ if ( !empty ( $_POST ) ) {
             $mail->isHTML( true );
             
             // Attach the image
-            // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
+            $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
             // $mail->addAttachment( $fabric_design );
 
             // Email subject

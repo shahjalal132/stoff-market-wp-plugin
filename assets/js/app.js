@@ -320,7 +320,7 @@
       resetForm();
 
       // Redirect to main page
-      window.location.href = "/stoff-form/";
+      window.location.href = "/";
     });
 
     // Select the design upload input element
@@ -388,7 +388,7 @@
 
       // send ajax request
       $.ajax({
-        url: "/stoff-form/",
+        url: "/",
         type: "POST",
         data: formData,
         beforeSend: function () {
@@ -403,7 +403,7 @@
           $("#loading-spinner").hide();
 
           // redirect to thank you page
-          window.location.href = "/thank-you/";
+          // window.location.href = "/thank-you/";
         },
         error: function (xhr, status, error) {
           // Hide loading spinner if AJAX request encounters an error

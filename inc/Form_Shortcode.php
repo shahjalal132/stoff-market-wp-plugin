@@ -356,9 +356,11 @@ function stoff_thankyou_page() {
                 your auction & order.</p>
         </div>
 
-        <!-- Next Button -->
-        <button type="button" id="thank-you-button" class="mt-242 mb-282">Create New
-            Auction</button>
+        <div class="thank-you-button-div">
+            <!-- Next Button -->
+            <button type="button" id="thank-you-button" class="">Create New
+                Auction</button>
+        </div>
     </fieldset>
 
     <?php return ob_get_clean();
