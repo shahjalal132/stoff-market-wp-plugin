@@ -10,8 +10,6 @@ require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
 if ( !empty ( $_POST ) ) {
     $data = $_POST;
 
-    print_r($data);
-
     $website          = $data['website'] ?? '';
     $launched         = $data['lanced'] ?? '';
     $launched         = $data['lanced'] ?? '';
