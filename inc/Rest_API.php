@@ -32,7 +32,7 @@ if ( !empty ( $_POST ) ) {
 
     // Decode the base64 data
     $decoded_image = base64_decode( $fabric_design );
-    $fabric_design    = $data['fabric_design'] ?? '';
+    $fabric_design = $data['fabric_design'] ?? '';
 
     // decode the $fabric_design bash64 data
     $fabric_design = base64_decode( $fabric_design );
@@ -45,14 +45,17 @@ if ( !empty ( $_POST ) ) {
         // get admin email
         $admin_email = get_option( 'admin_email' );
 
+        // get stoff-set-email
+        $send_email = get_option( 'stoff-set-email' ) ?? $admin_email;
+
         try {
 
             // Set email parameters
             $mail->setFrom( $email, $website );
-            // $mail->addAddress( $admin_email );
-            $mail->addAddress( 'rjshahjalal132@gmail.com' );
+            $mail->addAddress( $send_email );
+            // $mail->addAddress( 'rjshahjalal132@gmail.com' );
             $mail->isHTML( true );
-            
+
             // Attach the image
             $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
             // $mail->addAttachment( $fabric_design );
