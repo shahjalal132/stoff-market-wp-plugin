@@ -31,3 +31,4 @@ require_once STOFF_PLUGIN_PATH . '/inc/Enqueue_Assets.php';
 require_once STOFF_PLUGIN_PATH . '/inc/Form_Shortcode.php';
 require_once STOFF_PLUGIN_PATH . '/inc/Rest_API.php';
 require_once STOFF_PLUGIN_PATH . '/inc/Stoff_Settings.php';
+require_once STOFF_PLUGIN_PATH . '/inc/Helper_Functions.php';
