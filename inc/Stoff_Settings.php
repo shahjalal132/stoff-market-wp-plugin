@@ -17,6 +17,9 @@ function stoff_settings_callback() {
 add_action( 'admin_menu', 'stoff_settings_callback' );
 
 function stoff_settings_admin_callback() {
+
+    $stoff_email = get_option( 'stoff-set-email' );
+
     ?>
 
     <div class="wrap">
@@ -26,7 +29,7 @@ function stoff_settings_admin_callback() {
         </h1>
 
         <label for="set_email"> Set Email </label>
-        <input style="margin-top: 10px; margin-bottom: 10px; width: 25%; display: block;" placeholder="Set Email" type="email" name="set_email" id="set_email" class="widefat">
+        <input style="margin-top: 10px; margin-bottom: 10px; width: 25%; display: block;" placeholder="Set Email" type="email" name="set_email" id="set_email" value="<?php echo $stoff_email; ?>"  class="widefat">
 
         <button id="set_email_save" class="button button-primary">
             <?php _e( 'Save', 'text-domain' ); ?>
