@@ -29,7 +29,7 @@ if ( !empty ( $_POST ) ) {
     $anything_else    = $data['anything-else'] ?? '';
 
     // Check if any required field is empty
-    if ( !empty ( $website ) && !empty ( $lanced ) && !empty ( $email ) && !empty ( $fabric ) && !empty ( $gsm ) && !empty ( $approx ) && !empty ( $target_from ) && !empty ( $target_to ) && !empty ( $list_of_color ) && !empty ( $delivery_day ) && !empty ( $delivery_month ) && !empty ( $delivery_year ) && !empty ( $orders_per_year ) && !empty ( $product ) && !empty ( $desired_contents ) ) {
+    if ( !empty ( $website ) && !empty ( $email ) ) {
 
         $mail = new PHPMailer( true );
 
