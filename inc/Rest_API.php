@@ -14,6 +14,7 @@ if ( !empty ( $_POST ) ) {
 
     $website          = $data['website'] ?? '';
     $launched         = $data['lanced'] ?? '';
+    $launched         = $data['lanced'] ?? '';
     $email            = $data['email'] ?? '';
     $fabric           = $data['fabric'] ?? '';
     $gsm              = $data['gsm'] ?? '';
@@ -33,6 +34,10 @@ if ( !empty ( $_POST ) ) {
 
     // Decode the base64 data
     $decoded_image = base64_decode( $fabric_design );
+    $fabric_design    = $data['fabric_design'] ?? '';
+
+    // decode the $fabric_design bash64 data
+    $fabric_design = base64_decode( $fabric_design );
 
     // Check if any required field is empty
     if ( !empty ( $website ) && !empty ( $email ) ) {
@@ -46,22 +51,24 @@ if ( !empty ( $_POST ) ) {
 
             // Set email parameters
             $mail->setFrom( $email, $website );
-            // $mail->addAddress( $admin_email, 'Recipient' );
-            $mail->addAddress( 'rjshahjalal132@gmail.com', 'Recipient' );
+            // $mail->addAddress( $admin_email );
+            $mail->addAddress( 'rjshahjalal132@gmail.com' );
             $mail->isHTML( true );
             // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
 
             // Attach the image
             $mail->addStringAttachment( $decoded_image, 'fabric_design.jpg', 'base64', 'image/jpeg' );
+            // $mail->addAttachment( $fabric_design );
 
             // Email subject
             $mail->Subject = "A new Stoff Market Inquiry came from $website";
 
             // Construct HTML for table
             $tableRows = "";
-            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx. need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What’s the end product", "Fabric Finish", "Anything else we should know?" );
+            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What’s the end product", "Fabric Finish", "Anything else we should know?" );
 
-            $values = array( $website, $launched, $email, $fabric, $desired_contents, $gsm, $approx, "$target_from -to- $target_to", $list_of_color, "$delivery_day $delivery_month $delivery_year", $orders_per_year, $product, $fabric_finish, $anything_else );
+            // Construct array of values
+            $values = array( $website, $launched, $email, $fabric, $desired_contents, $gsm, $approx, "$target_from -to- $target_to", $list_of_color, "$delivery_day - $delivery_month - $delivery_year", $orders_per_year, $product, $fabric_finish, $anything_else );
 
             // Iterate through labels and values to construct table rows
             for ( $i = 0; $i < count( $labels ); $i++ ) {
