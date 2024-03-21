@@ -39,19 +39,21 @@ if ( !empty ( $_POST ) ) {
         try {
 
             // Set email parameters
-            $mail->setFrom( $email, 'Mailer' );
-            // $mail->addAddress( $admin_email, 'Recipient' );
-            $mail->addAddress( 'rjshahjalal132@gmail.com', 'Recipient' );
+            $mail->setFrom( $email, $website );
+            // $mail->addAddress( $admin_email );
+            $mail->addAddress( 'rjshahjalal132@gmail.com' );
             $mail->isHTML( true );
-            // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
+            $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
 
             // Email subject
             $mail->Subject = "A new Stoff Market Inquiry came from $website";
 
             // Construct HTML for table
             $tableRows = "";
-            $labels    = array( "Website", "Lanced", "Email", "Fabric", "GSM", "Approximate Quantity", "Target From", "Target To", "Lis of color(s)", "Delivery Date", "Orders Per Year", "Product", "Fabric Finish", "Desired Contents", "Anything else we should know?" );
-            $values    = array( $website, $lanced, $email, $fabric, $gsm, $approx, $target_from, $target_to, $list_of_color, "$delivery_day/$delivery_month/$delivery_year", $orders_per_year, $product, $fabric_finish, $desired_contents, $anything_else );
+            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What’s the end product", "Fabric Finish", "Anything else we should know?" );
+
+            // Construct array of values
+            $values = array( $website, $launched, $email, $fabric, $desired_contents, $gsm, $approx, "$target_from -to- $target_to", $list_of_color, "$delivery_day - $delivery_month - $delivery_year", $orders_per_year, $product, $fabric_finish, $anything_else );
 
             // Iterate through labels and values to construct table rows
             for ( $i = 0; $i < count( $labels ); $i++ ) {
