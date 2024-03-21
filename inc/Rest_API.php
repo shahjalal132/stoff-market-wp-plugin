@@ -27,6 +27,10 @@ if ( !empty ( $_POST ) ) {
     $fabric_finish    = $data['fabric-finishes'] ?? '';
     $desired_contents = $data['desired_contents'] ?? '';
     $anything_else    = $data['anything-else'] ?? '';
+    $fabric_design    = $data['fabric_design'] ?? '';
+
+    // decode the $fabric_design bash64 data
+    $fabric_design = base64_decode( $fabric_design );
 
     // Check if any required field is empty
     if ( !empty ( $website ) && !empty ( $email ) ) {
@@ -44,6 +48,7 @@ if ( !empty ( $_POST ) ) {
             $mail->addAddress( 'rjshahjalal132@gmail.com' );
             $mail->isHTML( true );
             $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
+            // $mail->addAttachment( $fabric_design );
 
             // Email subject
             $mail->Subject = "A new Stoff Market Inquiry came from $website";
