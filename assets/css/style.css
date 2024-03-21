@@ -340,6 +340,7 @@ select#delivery-day {
 
 .upload-file-div img {
   vertical-align: baseline;
+  cursor: pointer;
 }
 
 #fabric-finishes {
