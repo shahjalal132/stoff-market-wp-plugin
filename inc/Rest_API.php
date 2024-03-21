@@ -10,25 +10,26 @@ require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
 if ( !empty ( $_POST ) ) {
     $data = $_POST;
 
-    $website          = $data['website'] ?? '';
-    $launched         = $data['lanced'] ?? '';
-    $launched         = $data['lanced'] ?? '';
-    $email            = $data['email'] ?? '';
-    $fabric           = $data['fabric'] ?? '';
-    $gsm              = $data['gsm'] ?? '';
-    $approx           = $data['approx'] ?? '';
-    $target_from      = $data['target-from'] ?? '';
-    $target_to        = $data['target-to'] ?? '';
-    $list_of_color    = $data['list-of-color'] ?? '';
-    $delivery_day     = $data['delivery-day'] ?? '';
-    $delivery_month   = $data['delivery-month'] ?? '';
-    $delivery_year    = $data['delivery-year'] ?? '';
-    $orders_per_year  = $data['orders-per-year'] ?? '';
-    $product          = $data['product'] ?? '';
-    $fabric_finish    = $data['fabric-finishes'] ?? '';
-    $desired_contents = $data['desired_contents'] ?? '';
-    $anything_else    = $data['anything-else'] ?? '';
-    $fabric_design    = $data['fabric_design'] ?? '';
+    $website              = $data['website'] ?? '';
+    $launched             = $data['lanced'] ?? '';
+    $launched             = $data['lanced'] ?? '';
+    $email                = $data['email'] ?? '';
+    $fabric               = $data['fabric'] ?? '';
+    $gsm                  = $data['gsm'] ?? '';
+    $approx               = $data['approx'] ?? '';
+    $target_from          = $data['target-from'] ?? '';
+    $target_to            = $data['target-to'] ?? '';
+    $list_of_color        = $data['list-of-color'] ?? '';
+    $delivery_day         = $data['delivery-day'] ?? '';
+    $delivery_month       = $data['delivery-month'] ?? '';
+    $delivery_year        = $data['delivery-year'] ?? '';
+    $orders_per_year      = $data['orders-per-year'] ?? '';
+    $product              = $data['product'] ?? '';
+    $fabric_finish        = $data['fabric-finishes'] ?? '';
+    $desired_contents     = $data['desired_contents'] ?? '';
+    $anything_else        = $data['anything-else'] ?? '';
+    $fabric_design_base64 = $data['fabric_design'] ?? '';
+    $fabric_fileName      = $data['fabric_fileName'] ?? '';
 
     // Check if any required field is empty
     if ( !empty ( $website ) && !empty ( $email ) ) {
