@@ -8,7 +8,7 @@ function stoff_settings_callback() {
         __( 'Stoff-Settings', 'text-domain' ),
         'Stoff Settings',
         'manage_options',
-        'stoff-settings.php',
+        'stoff-settings',
         'stoff_settings_admin_callback',
         'dashicons-admin-generic',
         85
@@ -34,5 +34,32 @@ function stoff_settings_admin_callback() {
 
     </div>
 
+    <script>
+        jQuery(document).ready(function($) {
+            $('#set_email_save').click(function(e) {
+                e.preventDefault();
+                var email = $('#set_email').val();
+                var data = {
+                    'action': 'save_email',
+                    'email': email
+                };
+                $.post(ajaxurl, data, function(response) {
+                    alert('Email saved successfully!');
+                });
+            });
+        });
+    </script>
+
     <?php
+}
+
+// AJAX handler function to save email
+add_action('wp_ajax_save_email', 'save_email_callback');
+
+function save_email_callback() {
+    if (isset($_POST['email'])) {
+        $email = sanitize_email($_POST['email']);
+        update_option('stoff-set-email', $email);
+        echo 'success';
+    }
 }
