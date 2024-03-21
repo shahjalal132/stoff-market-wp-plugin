@@ -282,8 +282,9 @@
 
     // Function to reset the form and go back to step one
     function resetForm() {
-      // Reset form fields
-      $("#msform")[0].reset();
+
+      // clear all input fields
+      $('input[type="text"], input[type="email"], input[type="number"], select').val('');
 
       // Remove error classes
       $('input[type="text"], input[type="email"], select').removeClass("error");
@@ -314,8 +315,12 @@
 
     // Event listener for the "thank-you-button"
     $(document).on("click", "#thank-you-button", function () {
+      
       // Reset the form and go back to step one
       resetForm();
+
+      // Redirect to main page
+      window.location.href = "/stoff-form/";
     });
 
     // Select the design upload input element
@@ -413,9 +418,5 @@
       });
     });
 
-    // when click id="thank-you-button" then redirect to /stoff-form/ page
-    $("#thank-you-button").click(function () {
-      window.location.href = "/stoff-form/";
-    });
   });
 })(jQuery);
