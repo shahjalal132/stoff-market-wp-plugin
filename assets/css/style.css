@@ -365,7 +365,7 @@ select#delivery-day {
   display: none;
 }
 
-.thank-you-button-div{
+.thank-you-button-div {
   margin-top: 242px;
   margin-bottom: 280px;
   text-align: center;
@@ -480,4 +480,71 @@ div#loading-spinner {
   padding: 10px;
   font-size: 1rem;
   font-weight: 500;
+}
+
+/* make responsive */
+@media only screen and (max-width: 500px) {
+  fieldset.w-534 {
+    width: 100%;
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .form-card {
+    width: 100% !important;
+  }
+
+  .form-card {
+    text-align: center;
+  }
+
+  div#step-one-fields {
+    /* padding: 0 20px !important; */
+    margin-left: 30px;
+  }
+
+  .fs-gic {
+    grid-template-columns: 130px auto;
+    gap: 10px;
+  }
+
+  fieldset.w-787 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ss-gic {
+    grid-template-columns: 130px auto;
+    align-items: center;
+  }
+
+  #step-two-fields {
+    margin-top: 135px;
+    text-align: center;
+    margin-left: 110px;
+  }
+
+  .gap-30 {
+    gap: 10px;
+  }
+
+  .w-662 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .gap-76 {
+    gap: 10px;
+  }
+
+  .ts-gic {
+    grid-template-columns: 130px auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  #step-three-fields {
+    margin-top: 235px;
+    margin-left: 40px;
+}
 }
