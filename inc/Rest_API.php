@@ -1,5 +1,6 @@
 <?php
 
+require_once ( ABSPATH . 'wp-load.php' );
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -10,56 +11,36 @@ require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
 if ( !empty ( $_POST ) ) {
     $data = $_POST;
 
-    $website              = $data['website'] ?? '';
-    $launched             = $data['lanced'] ?? '';
-    $launched             = $data['lanced'] ?? '';
-    $email                = $data['email'] ?? '';
-    $fabric               = $data['fabric'] ?? '';
-    $gsm                  = $data['gsm'] ?? '';
-    $approx               = $data['approx'] ?? '';
-    $target_from          = $data['target-from'] ?? '';
-    $target_to            = $data['target-to'] ?? '';
-    $list_of_color        = $data['list-of-color'] ?? '';
-    $delivery_day         = $data['delivery-day'] ?? '';
-    $delivery_month       = $data['delivery-month'] ?? '';
-    $delivery_year        = $data['delivery-year'] ?? '';
-    $orders_per_year      = $data['orders-per-year'] ?? '';
-    $product              = $data['product'] ?? '';
-    $fabric_finish        = $data['fabric-finishes'] ?? '';
-    $desired_contents     = $data['desired_contents'] ?? '';
-    $anything_else        = $data['anything-else'] ?? '';
-    $fabric_design_base64 = $data['fabric_design'] ?? '';
-    $fabric_fileName      = $data['fabric_fileName'] ?? '';
+    print_r( $data );
+
+    $website          = $data['website'] ?? '';
+    $launched         = $data['lanced'] ?? '';
+    $launched         = $data['lanced'] ?? '';
+    $email            = $data['email'] ?? '';
+    $fabric           = $data['fabric'] ?? '';
+    $gsm              = $data['gsm'] ?? '';
+    $approx           = $data['approx'] ?? '';
+    $target_from      = $data['target-from'] ?? '';
+    $target_to        = $data['target-to'] ?? '';
+    $list_of_color    = $data['list-of-color'] ?? '';
+    $delivery_day     = $data['delivery-day'] ?? '';
+    $delivery_month   = $data['delivery-month'] ?? '';
+    $delivery_year    = $data['delivery-year'] ?? '';
+    $orders_per_year  = $data['orders-per-year'] ?? '';
+    $product          = $data['product'] ?? '';
+    $fabric_finish    = $data['fabric-finishes'] ?? '';
+    $desired_contents = $data['desired_contents'] ?? '';
+    $anything_else    = $data['anything-else'] ?? '';
+    $fabric_design    = $data['fabric_design'] ?? '';
 
     // Check if any required field is empty
     if ( !empty ( $website ) && !empty ( $email ) ) {
 
-        $mail = new PHPMailer( true );
-
-        // get admin email
-        $admin_email = get_option( 'admin_email' );
-
-        // get stoff-set-email
-        $send_email = get_option( 'stoff-set-email' ) ?? $admin_email;
-
         try {
-
-            // Set email parameters
-            $mail->setFrom( $email, $website );
-            $mail->addAddress( $send_email );
-            // $mail->addAddress( 'rjshahjalal132@gmail.com' );
-            $mail->isHTML( true );
-
-            // Attach the image
-            // $mail->addAttachment( STOFF_PLUGIN_PATH . '/assets/images/Spinner.gif' );
-            // $mail->addAttachment( $fabric_design );
-
-            // Email subject
-            $mail->Subject = "A new Stoff Market Inquiry came from $website";
 
             // Construct HTML for table
             $tableRows = "";
-            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What's the end product", "Fabric Finish", "Anything else we should know?" );
+            $labels    = array( "Website", "Launched", "Email", "Fabric Structure", "Desired Contents", "Weight GSM", "How many yards do you approx need", "USD cost per yard", "List of color(s)", "Delivery Date", "Orders Per Year", "What’s the end product", "Fabric Finish", "Anything else we should know?" );
 
             // Construct array of values
             $values = array( $website, $launched, $email, $fabric, $desired_contents, $gsm, $approx, "$target_from -to- $target_to", $list_of_color, "$delivery_day - $delivery_month - $delivery_year", $orders_per_year, $product, $fabric_finish, $anything_else );
@@ -69,8 +50,27 @@ if ( !empty ( $_POST ) ) {
                 $tableRows .= "<tr><td><strong>$labels[$i]:</strong></td><td>$values[$i]</td></tr>";
             }
 
-            // HTML message body
-            $mail->Body = "
+            add_action( 'wp_loaded', function () use ($website, $tableRows, $fabric_design) {
+
+                // check if the image is not empty and the file is valid image
+                if ( !empty ( $fabric_design ) ) {
+                    // Decode the base64 data
+                    $image_data = base64_decode( preg_replace( '#^data:image/\w+;base64,#i', '', $fabric_design ) );
+                    // generate a random name for the image
+                    $random_number = rand( 100, 1000 );
+                    $image_name    = 'stoff-market-' . time() . $random_number . '.png';
+
+                    // Upload the image to WordPress
+                    $upload = wp_upload_bits( $image_name, null, $image_data );
+                    // Get the image URL
+                    $image_url = $upload['url'];
+                } else {
+                    $image_url = '';
+                }
+
+                $to            = get_option( 'stoff-set-email' );
+                $subject       = "A new Stoff Market Inquiry came from $website";
+                $message       = "
                 <!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -118,17 +118,28 @@ if ( !empty ( $_POST ) ) {
                         <table>
                             <tbody>
                                 $tableRows
+                                <tr><td><strong>Fabric Design:</strong></td><td><a target=\"_blank\" href=\"$image_url\">Click here to view</a></td></tr>
                             </tbody>
                         </table>
                     </div>
                 </body>
                 </html>";
 
-            // Send email
-            $mail->send();
-            echo 'Mail sent successfully';
+                $from          = "Stoff Market <info@stoffmarket.com>";
+                $headers       = array ( 'Content-Type: text/html; charset=UTF-8' );
+                $headers[]     = 'From: ' . $from;
+                $attachments   = array ();
+                $attachments[] = $image_url;
+
+                // Send email
+                \wp_mail( $to, $subject, $message, $headers, $attachments );
+                
+                echo 'Mail sent successfully';
+            } );
+
+
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo "Message could not be sent. Mailer Error: {$e->getMessage()}";
         }
     } else {
         echo 'Form data is incomplete';
