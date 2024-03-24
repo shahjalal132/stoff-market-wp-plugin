@@ -138,14 +138,15 @@ function stoff_enquires_html() {
                     <th scope="col">Fabric Structure</th>
                     <th scope="col">Desired Contents</th>
                     <th scope="col">Weigh GSM</th>
-                    <th scope="col">How many Yards do you approx need</th>
-                    <th scope="col">USD cost per yard</th>
+                    <th scope="col">How many Yards</th>
+                    <th scope="col">USD cost</th>
                     <th scope="col">List of color(s)</th>
                     <th scope="col">Delivery Date</th>
                     <th scope="col">Order Per Year</th>
                     <th scope="col">What's the end product</th>
                     <th scope="col">Fabric Finish</th>
                     <th scope="col">Anything else we should know?</th>
+                    <th scope="col">Created At</th>
                     <th scope="col">Fabric Design</th>
                 </tr>
             </thead>
@@ -184,6 +185,7 @@ function stoff_enquires_html() {
                         echo '<td>' . $result->product . '</td>';
                         echo '<td>' . $result->fabric_finishes . '</td>';
                         echo '<td>' . $result->anything_else . '</td>';
+                        echo '<td>' . $result->enquiry_date . '</td>';
                         echo '<td>' . '<a href="' . $result->fabric_design . '" target="_blank">' . 'Click here to view' . '</a>' . '</td>';
                         echo '</tr>';
                     }
