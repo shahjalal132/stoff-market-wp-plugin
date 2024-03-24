@@ -59,9 +59,9 @@ if ( !empty ( $_POST ) ) {
                     $image_url = '';
                 }
 
-                $to            = get_option( 'stoff-set-email' );
-                $subject       = "A new Stoff Market Inquiry came from $website";
-                $message       = "
+                $to      = get_option( 'stoff-set-email' ) ?? get_option( 'admin_email' );
+                $subject = "A new Stoff Market Inquiry came from $website";
+                $message = "
                 <!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -124,7 +124,7 @@ if ( !empty ( $_POST ) ) {
 
                 // Send email
                 \wp_mail( $to, $subject, $message, $headers, $attachments );
-                
+
                 echo 'Mail sent successfully';
             } );
 

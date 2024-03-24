@@ -564,7 +564,7 @@ div#loading-spinner {
 }
 
 .main-form {
-  display: none;
+  /* display: none; */
 }
 
 /* captcha  */

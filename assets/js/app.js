@@ -7,6 +7,37 @@
 
     setProgressBar(current);
 
+    $(window).on("load", function () {
+      // Check if the URL contains the specific hash
+      if (window.location.hash === "#msform") {
+        // If hash is present, show the .main-form section
+        $(".main-form").show();
+        // move to a specific id
+        $("html, body").animate(
+          {
+            scrollTop: $("#msform").offset().top,
+          },
+          {
+            duration: 1000,
+            easing: "linear",
+          }
+        );
+      }
+    });
+    $(".get-custom-bids").on("click", function () {
+      $(".main-form").show();
+      // move to a specific id
+      $("html, body").animate(
+        {
+          scrollTop: $("#msform").offset().top,
+        },
+        {
+          duration: 1000,
+          easing: "linear",
+        }
+      );
+    });
+
     $(".next").click(function () {
       current_fs = $(this).parent();
       next_fs = $(this).parent().next();
@@ -115,7 +146,7 @@
         totalOptions > 1 ? parseFloat((100 / totalOptions).toFixed(2)) : 100;
 
       // Update percentage for each selected option
-      $(".selected-option .percentage").text(percentage + "%");
+      $(".selected-option .percentage").text(percentage);
     }
 
     // Function to display selected options with percentages
@@ -126,11 +157,11 @@
         totalOptions > 1 ? parseFloat((100 / totalOptions).toFixed(2)) : 100;
 
       $("#selected-options").append(
-        '<div class="selected-option" contenteditable="true"> <span class="remove-option">x</span>' +
+        '<div class="selected-option"> <span class="remove-option">x</span>' +
           selectedContent +
-          '<span class="percentage">' +
+          '<span class="percentage" contenteditable="true">' +
           percentage +
-          "%</span>" +
+          "</span>%" +
           "</div>"
       );
     }
@@ -323,33 +354,40 @@
       window.location.href = "/";
     });
 
-    // define file name variable
-    var fileName = "";
-
+    // Select the design upload input element
     const uploadInput = document.getElementById("design_upload");
-    const imageInput = document.getElementById("image_base64");
-    const uploadLabel = document.getElementById("upload_image_label");
 
+    // Select the input element that will store the base64 encoded image data
+    const imageInput = document.getElementById("image_base64");
+
+    // Add an event listener to the upload input for when the file selection changes
     uploadInput.addEventListener("change", (event) => {
+      // Get the first selected file from the event object
       const file = event.target.files[0];
 
+      // Check if a file is actually selected
       if (file) {
-
-        fileName = file.name;
-
+        // Create a new FileReader object
         const reader = new FileReader();
 
+        // Define a function to handle the onload event of the FileReader
         reader.onload = (e) => {
+          // Get the base64 encoded data from the event target result
           const base64Data = e.target.result;
 
+          // Set the value of the image_base64 input element to the base64 encoded data
           imageInput.value = base64Data;
-          uploadLabel.textContent = file.name;
+          $(".image-show").show();
+
+          // OPTIONAL: Uncomment the following line to see the base64 data in the console for debugging purposes
+          // console.log(base64Data);
         };
 
+        // Start reading the selected file as a data URL (base64 encoded)
         reader.readAsDataURL(file);
       } else {
+        // If no file is selected, clear the value of the image_base64 input element
         imageInput.value = "";
-        uploadLabel.textContent = "Choose File";
       }
     });
 
@@ -357,63 +395,183 @@
     $("#get-bids").click(function (e) {
       e.preventDefault();
 
-      // retrieve the form data
-      var formData = $("#msform").serializeArray();
+      if ($(".submit__generated").hasClass("valid")) {
+        // retrieve the form data
+        var formData = $("#msform").serializeArray();
 
-      // log the form data
-      var selectOption = $(".selected-option").text();
+        // log the form data
+        var selectOption = $(".selected-option").text();
 
-      // remove x from beginning
-      selectOption = selectOption.replace("x", "");
+        // remove x from beginning
+        selectOption = selectOption.replace("x", "");
 
-      var imageBase64 = $("#image_base64").val();
+        var imageBase64 = $("#image_base64").val();
 
-      // convert selectOption text to array with space as delimiter
-      selectOption = selectOption.split(" ");
+        // convert selectOption text to array with space as delimiter
+        selectOption = selectOption.split(" ");
 
-      // remove first ''
-      selectOption.shift();
+        // remove first ''
+        selectOption.shift();
 
-      // push to formData array the selectOption array
-      formData.push({ name: "desired_contents", value: selectOption });
+        // push to formData array the selectOption array
+        formData.push({ name: "desired_contents", value: selectOption });
 
-      // push to formData array the imageBase64
-      formData.push({ name: "fabric_design", value: imageBase64 });
+        // push to formData array the imageBase64
+        formData.push({ name: "fabric_design", value: imageBase64 });
 
-      // push to formData array the fileName
-      formData.push({ name: "fabric_fileName", value: fileName });
+        // send ajax request
+        $.ajax({
+          url: "/wp-json/stoff-market/v1/send-email",
+          type: "POST",
+          data: formData,
+          beforeSend: function () {
+            // Show loading spinner before AJAX request
+            $("#loading-spinner").show();
+          },
+          success: function (response) {
+            // log the response
+            // console.log(response);
 
-      // send ajax request
-      $.ajax({
-        url: "/",
-        type: "POST",
-        data: formData,
-        beforeSend: function () {
-          // Show loading spinner before AJAX request
-          $("#loading-spinner").show();
-        },
-        success: function (response) {
-          // log the response
-          // console.log(response);
+            // Hide loading spinner after AJAX request is successful
+            $("#loading-spinner").hide();
 
-          // Hide loading spinner after AJAX request is successful
-          $("#loading-spinner").hide();
+            window.location.href = "/thank-you/";
 
-          // redirect to thank you page
-          window.location.href = "/thank-you/";
-        },
-        error: function (xhr, status, error) {
-          // Hide loading spinner if AJAX request encounters an error
-          $("#loading-spinner").hide();
+            // wait for 3 seconds
+            /* setTimeout(function () {
+              // redirect to thank you page
+              window.location.href = "/thank-you/";
+            }, 3000); */
+          },
+          error: function (xhr, status, error) {
+            // Hide loading spinner if AJAX request encounters an error
+            $("#loading-spinner").hide();
 
-          console.error(xhr.responseText);
-        },
-        complete: function () {
-          // Hide loading spinner after AJAX request is complete (regardless of success or failure)
-          $("#loading-spinner").hide();
-        },
-      });
+            console.error(xhr.responseText);
+          },
+          complete: function () {
+            // Hide loading spinner after AJAX request is complete (regardless of success or failure)
+            $("#loading-spinner").hide();
+          },
+        });
+      } else {
+        alert("Please solve the captcha");
+      }
     });
 
+    // captcha code starts here
+    var a,
+      b,
+      c,
+      submitContent,
+      captcha,
+      locked,
+      validSubmit = false,
+      timeoutHandle;
+
+    // Generating a simple sum (a + b) to make with a result (c)
+    function generateCaptcha() {
+      a = Math.ceil(Math.random() * 10);
+      b = Math.ceil(Math.random() * 10);
+      c = a + b;
+      submitContent =
+        "<span>" +
+        a +
+        "</span> + <span>" +
+        b +
+        "</span>" +
+        ' = <input class="submit__input" type="text" maxlength="2" size="2" required />';
+      $(".submit__generated").html(submitContent);
+
+      init();
+    }
+
+    // Check the value 'c' and the input value.
+    function checkCaptcha() {
+      if (captcha === c) {
+        // Pop the green valid icon
+        $(".submit__generated").removeClass("unvalid").addClass("valid");
+        $(".submit").removeClass("overlay");
+        $(".submit__overlay").fadeOut("fast");
+
+        $(".submit__error").addClass("hide");
+        $(".submit__error--empty").addClass("hide");
+        validSubmit = true;
+      } else {
+        if (captcha === "") {
+          $(".submit__error").addClass("hide");
+          $(".submit__error--empty").removeClass("hide");
+        } else {
+          $(".submit__error").removeClass("hide");
+          $(".submit__error--empty").addClass("hide");
+        }
+        // Pop the red unvalid icon
+        $(".submit__generated").removeClass("valid").addClass("unvalid");
+        $(".submit").addClass("overlay");
+        $(".submit__overlay").fadeIn("fast");
+        validSubmit = false;
+      }
+      return validSubmit;
+    }
+
+    function unlock() {
+      locked = false;
+    }
+
+    // Refresh button click - Reset the captcha
+    $(".submit__control i.fa-refresh").on("click", function () {
+      if (!locked) {
+        locked = true;
+        setTimeout(unlock, 500);
+        generateCaptcha();
+        setTimeout(checkCaptcha, 0);
+      }
+    });
+
+    // init the action handlers - mostly useful when 'c' is refreshed
+    function init() {
+      $("form").on("submit", function (e) {
+        e.preventDefault();
+        if ($(".submit__generated").hasClass("valid")) {
+          // var formValues = [];
+          captcha = $(".submit__input").val();
+          if (captcha !== "") {
+            captcha = Number(captcha);
+          }
+
+          checkCaptcha();
+
+          if (validSubmit === true) {
+            validSubmit = false;
+            // Temporary direct 'success' simulation
+            submitted();
+
+            alert("Hello");
+          }
+        } else {
+          return false;
+        }
+      });
+
+      // Captcha input result handler
+      $(".submit__input").on(
+        "propertychange change keyup input paste",
+        function () {
+          // Prevent the execution on the first number of the string if it's a 'multiple number string'
+          // (i.e: execution on the '1' of '12')
+          window.clearTimeout(timeoutHandle);
+          timeoutHandle = window.setTimeout(function () {
+            captcha = $(".submit__input").val();
+            if (captcha !== "") {
+              captcha = Number(captcha);
+            }
+            checkCaptcha();
+          }, 150);
+        }
+      );
+    }
+
+    generateCaptcha();
+    // captcha code ends here
   });
 })(jQuery);
