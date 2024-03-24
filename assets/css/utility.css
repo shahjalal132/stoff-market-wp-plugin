@@ -22,15 +22,15 @@
   grid-template-columns: 273px 258px;
 }
 
-.w-534{
+.w-534 {
   width: 534px;
 }
 
-.w-787{
+.w-787 {
   width: 787px;
 }
 
-.w-662{
+.w-662 {
   width: 662px;
 }
 
@@ -46,11 +46,11 @@
   margin-top: 50px;
 }
 
-.mt-242{
+.mt-242 {
   margin-top: 242px;
 }
 
-.mb-282{
+.mb-282 {
   margin-bottom: 282px;
 }
 
@@ -62,11 +62,11 @@
   margin-top: 120px;
 }
 
-.mt-128{
+.mt-128 {
   margin-top: 128px;
 }
 
-.mb-208{
+.mb-208 {
   margin-bottom: 208px;
 }
 
@@ -82,7 +82,7 @@
   gap: 11px;
 }
 
-.sm-gap-5{
+.sm-gap-5 {
   gap: 5px;
 }
 
