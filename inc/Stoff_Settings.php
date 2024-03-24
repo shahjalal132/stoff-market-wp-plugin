@@ -84,6 +84,8 @@ add_action( 'admin_menu', 'stoff_enquiries' );
 
 function stoff_enquires_html() {
 
+    echo '<h2 class="mt-2">Stoff Market Enquires</h2>';
+
     if ( !current_user_can( 'manage_options' ) ) {
         return;
     }
@@ -182,7 +184,7 @@ function stoff_enquires_html() {
                         echo '<td>' . $result->product . '</td>';
                         echo '<td>' . $result->fabric_finishes . '</td>';
                         echo '<td>' . $result->anything_else . '</td>';
-                        echo '<td>' . '<a href="' . $result->fabric_design . '">' . 'Click here to view' . '</a>' . '</td>';
+                        echo '<td>' . '<a href="' . $result->fabric_design . '" target="_blank">' . 'Click here to view' . '</a>' . '</td>';
                         echo '</tr>';
                     }
                 }
