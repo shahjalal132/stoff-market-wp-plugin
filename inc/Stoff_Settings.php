@@ -84,6 +84,10 @@ add_action( 'admin_menu', 'stoff_enquiries' );
 
 function stoff_enquires_html() {
 
+    if ( !current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
     global $wpdb;
     $table_name = $wpdb->prefix . 'enquires';
 
@@ -93,12 +97,12 @@ function stoff_enquires_html() {
     $offset       = ( $current_page - 1 ) * $per_page;
 
     // Fetch results with pagination and search
-    $search_term = isset ( $_GET['stoff-enquires'] ) ? sanitize_text_field( $_GET['stoff-enquires'] ) : '';
+    $search_term = isset ( $_GET['search-enquiry'] ) ? sanitize_text_field( $_GET['search-enquiry'] ) : '';
     $query       = "SELECT * FROM $table_name";
 
     // Add WHERE clause if search term is provided
     if ( !empty ( $search_term ) ) {
-        $query .= $wpdb->prepare( " WHERE website LIKE %s OR email LIKE %s", "%$search_term%", "%$search_term%" );
+        $query .= $wpdb->prepare( " WHERE website LIKE %s OR email LIKE %s", "%" . $search_term . "%", "%" . $search_term . "%" );
     }
 
     $query .= " LIMIT $per_page OFFSET $offset";
@@ -109,19 +113,16 @@ function stoff_enquires_html() {
     <!-- Search box -->
     <nav class="navbar navbar-light bg-light mt-4">
         <form class="form-inline d-flex ms-auto gap-2 me-2" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
-            <input class="form-control mr-sm-2" id="search-input" name="page" value="stoff-enquires" type="hidden">
-            <input class="form-control mr-sm-2" id="search-input" name="stoff-enquires"
-                value="<?php echo isset ( $_GET['stoff-enquires'] ) ? esc_attr( $_GET['stoff-enquires'] ) : ''; ?>"
+
+            <input class="form-control mr-sm-2" id="search-input" name="page" value="enquires" type="hidden">
+
+            <input class="form-control mr-sm-2" id="search-input" name="search-enquiry"
+                value="<?php echo isset ( $_GET['search-enquiry'] ) ? esc_attr( $_GET['search-enquiry'] ) : ''; ?>"
                 type="search" placeholder="Search" aria-label="Search">
+
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
-
-    <!-- <p class="search-box">
-        <label class="screen-reader-text" for="post-search-input">Search Pages:</label>
-        <input type="search" id="post-search-input" name="s" value="">
-        <input type="submit" id="search-submit" class="button" value="Search Pages">
-    </p> -->
 
     <!-- Display users information?s table -->
     <div id="stoff-enquires-table">
@@ -214,4 +215,5 @@ function stoff_enquires_html() {
     </div>
 
     <?php
+
 }
