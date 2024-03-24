@@ -98,7 +98,7 @@ function stoff_enquires_html() {
 
     // Add WHERE clause if search term is provided
     if ( !empty ( $search_term ) ) {
-        $query .= $wpdb->prepare( " WHERE first_name LIKE %s OR address LIKE %s OR email LIKE %s OR phone LIKE %s", '%' . $search_term . '%', '%' . $search_term . '%', '%' . $search_term . '%', '%' . $search_term . '%' );
+        $query .= $wpdb->prepare( " WHERE website LIKE %s OR email LIKE %s", "%$search_term%", "%$search_term%" );
     }
 
     $query .= " LIMIT $per_page OFFSET $offset";
@@ -129,17 +129,21 @@ function stoff_enquires_html() {
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">What's App</th>
-                    <th scope="col">Mobile App</th>
                     <th scope="col">Website</th>
-                    <th scope="col">Software</th>
-                    <th scope="col">Requirements</th>
-                    <th scope="col">Budget</th>
-                    <th scope="col">Deadline</th>
+                    <th scope="col">Launched</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fabric Structure</th>
+                    <th scope="col">Desired Contents</th>
+                    <th scope="col">Weigh GSM</th>
+                    <th scope="col">How many Yards do you approx need</th>
+                    <th scope="col">USD cost per yard</th>
+                    <th scope="col">List of color(s)</th>
+                    <th scope="col">Delivery Date</th>
+                    <th scope="col">Order Per Year</th>
+                    <th scope="col">What's the end product</th>
+                    <th scope="col">Fabric Finish</th>
+                    <th scope="col">Anything else we should know?</th>
+                    <th scope="col">Fabric Design</th>
                 </tr>
             </thead>
             <tbody>
@@ -147,20 +151,38 @@ function stoff_enquires_html() {
                 if ( !empty ( $results ) && is_array( $results ) ) {
                     foreach ( $results as $result ) {
 
-                        /* echo '<tr>';
-                        echo '<td>' . $result->user_id . '</td>';
-                        echo '<td>' . $result->first_name . '</td>';
-                        echo '<td>' . $result->address . '</td>';
+                        $desired_contents = $result->desired_contents;
+                        // replace , to ' ' in $desired_contents
+                        $desired_contents = str_replace( ',', ' ', $desired_contents );
+                        // capitalize first letter of each word
+                        $desired_contents = ucwords( $desired_contents );
+
+                        $list_of_colors = $result->list_of_color;
+                        // capitalize first letter of each word
+                        $list_of_colors = ucwords( $list_of_colors );
+
+                        $fabric_structure = $result->fabric;
+                        // capitalize first letter of each word
+                        $fabric_structure = ucwords( $fabric_structure );
+
+                        echo '<tr>';
+                        echo '<td>' . $result->id . '</td>';
+                        echo '<td>' . $result->website . '</td>';
+                        echo '<td>' . $result->launched . '</td>';
                         echo '<td>' . $result->email . '</td>';
-                        echo '<td>' . $result->phone . '</td>';
-                        echo '<td>' . $result->whatsapp . '</td>';
-                        echo '<td>' . $need_app . '</td>';
-                        echo '<td>' . $need_website . '</td>';
-                        echo '<td>' . $need_software . '</td>';
-                        echo '<td>' . $result->requirement . '</td>';
-                        echo '<td>' . $result->budget . '</td>';
-                        echo '<td>' . $result->deadline . '</td>';
-                        echo '</tr>'; */
+                        echo '<td>' . $fabric_structure . '</td>';
+                        echo '<td>' . $desired_contents . '</td>';
+                        echo '<td>' . $result->gsm . '</td>';
+                        echo '<td>' . $result->approx_need . '</td>';
+                        echo '<td>' . $result->target_from . ' - ' . $result->target_to . '</td>';
+                        echo '<td>' . $list_of_colors . '</td>';
+                        echo '<td>' . $result->delivery_day . ' - ' . $result->delivery_month . ' - ' . $result->delivery_year . '</td>';
+                        echo '<td>' . $result->orders_per_year . '</td>';
+                        echo '<td>' . $result->product . '</td>';
+                        echo '<td>' . $result->fabric_finishes . '</td>';
+                        echo '<td>' . $result->anything_else . '</td>';
+                        echo '<td>' . '<a href="' . $result->fabric_design . '">' . 'Click here to view' . '</a>' . '</td>';
+                        echo '</tr>';
                     }
                 }
                 ?>
@@ -170,21 +192,24 @@ function stoff_enquires_html() {
 
     <!-- Pagination -->
     <div class="pagination float-end me-2 mt-2">
+
         <?php
         $total_items = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" );
 
         $total_pages = ceil( $total_items / $per_page );
 
-        echo paginate_links(
-            array(
-                'base'      => add_query_arg( 'paged', '%#%' ),
-                'format'    => '',
-                'prev_text' => __( 'Previous' ),
-                'next_text' => __( 'Next' ),
-                'total'     => $total_pages,
-                'current'   => $current_page,
-            )
-        );
+        if ( $total_items > 10 ) {
+            echo paginate_links(
+                array(
+                    'base'      => add_query_arg( 'paged', '%#%' ),
+                    'format'    => '',
+                    'prev_text' => __( 'Previous' ),
+                    'next_text' => __( 'Next' ),
+                    'total'     => $total_pages,
+                    'current'   => $current_page,
+                )
+            );
+        }
         ?>
     </div>
 

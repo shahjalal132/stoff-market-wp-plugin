@@ -32,3 +32,11 @@
   background-color: #2271b1;
   border-color: #2271b1;
 }
+
+#stoff-enquires-table{
+    width: max-content;
+}
+
+#stoff-enquires-table .widefat{
+    width: inherit;
+}
