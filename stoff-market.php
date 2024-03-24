@@ -27,6 +27,8 @@ if ( !defined( 'STOFF_PLUGIN_URI' ) ) {
 }
 
 
+// create enquires Table When Plugin Activated
+register_activation_hook( __FILE__, 'stoff_enquires_db_table_create' );
 
 
 // require files
