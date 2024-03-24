@@ -402,8 +402,8 @@
         // log the form data
         var selectOption = $(".selected-option").text();
 
-        // remove x from beginning
-        selectOption = selectOption.replace("x", "");
+        // remove x for every selectOption
+        selectOption = selectOption.replace(/x/g, " ");
 
         var imageBase64 = $("#image_base64").val();
 

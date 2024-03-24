@@ -36,3 +36,41 @@ function stoff_enquires_db_table_create() {
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
 }
+
+function insert_data_to_database( $data, $image_url ) {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'enquires';
+
+    $insert_result = $wpdb->insert(
+        $table_name,
+        array(
+            'website'          => $data['website'],
+            'launched'         => $data['lanced'],
+            'email'            => $data['email'],
+            'fabric'           => $data['fabric'],
+            'desired_contents' => $data['desired_contents'],
+            'gsm'              => $data['gsm'],
+            'approx_need'      => $data['approx'],
+            'target_from'      => $data['target-from'],
+            'target_to'        => $data['target-to'],
+            'list_of_color'    => $data['list-of-color'],
+            'delivery_day'     => $data['delivery-day'],
+            'delivery_month'   => $data['delivery-month'],
+            'delivery_year'    => $data['delivery-year'],
+            'orders_per_year'  => $data['orders-per-year'],
+            'product'          => $data['product'],
+            'fabric_finishes'  => $data['fabric-finishes'],
+            'anything_else'    => $data['anything-else'],
+            'fabric_design'    => $image_url,
+        )
+    );
+
+    if ( false === $insert_result ) {
+        // There was an error inserting data
+        echo "Error inserting data: " . $wpdb->last_error;
+    } else {
+        // Data inserted successfully
+        echo "Data inserted successfully";
+    }
+}

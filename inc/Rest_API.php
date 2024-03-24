@@ -41,7 +41,7 @@ if ( !empty ( $_POST ) ) {
                 $tableRows .= "<tr><td><strong>$labels[$i]:</strong></td><td>$values[$i]</td></tr>";
             }
 
-            add_action( 'wp_loaded', function () use ($website, $tableRows, $fabric_design) {
+            add_action( 'wp_loaded', function () use ($website, $tableRows, $fabric_design, $data) {
 
                 // check if the image is not empty and the file is valid image
                 if ( !empty ( $fabric_design ) ) {
@@ -55,9 +55,15 @@ if ( !empty ( $_POST ) ) {
                     $upload = wp_upload_bits( $image_name, null, $image_data );
                     // Get the image URL
                     $image_url = $upload['url'];
+
+                    // set $image_url_outer to $image_url
+                    $GLOBALS['image_url_outer'] = $image_url;
                 } else {
                     $image_url = '';
                 }
+
+                // Insert data into database
+                insert_data_to_database( $data,  $image_url );
 
                 $to      = get_option( 'stoff-set-email' ) ?? get_option( 'admin_email' );
                 $subject = "A new Stoff Market Inquiry came from $website";
