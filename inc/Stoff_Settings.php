@@ -29,7 +29,8 @@ function stoff_settings_admin_callback() {
         </h1>
 
         <label for="set_email"> Set Email </label>
-        <input style="margin-top: 10px; margin-bottom: 10px; width: 25%; display: block;" placeholder="Set Email" type="email" name="set_email" id="set_email" value="<?php echo $stoff_email; ?>"  class="widefat">
+        <input style="margin-top: 10px; margin-bottom: 10px; width: 25%; display: block;" placeholder="Set Email"
+            type="email" name="set_email" id="set_email" value="<?php echo $stoff_email; ?>" class="widefat">
 
         <button id="set_email_save" class="button button-primary">
             <?php _e( 'Save', 'text-domain' ); ?>
@@ -38,15 +39,15 @@ function stoff_settings_admin_callback() {
     </div>
 
     <script>
-        jQuery(document).ready(function($) {
-            $('#set_email_save').click(function(e) {
+        jQuery(document).ready(function ($) {
+            $('#set_email_save').click(function (e) {
                 e.preventDefault();
                 var email = $('#set_email').val();
                 var data = {
                     'action': 'save_email',
                     'email': email
                 };
-                $.post(ajaxurl, data, function(response) {
+                $.post(ajaxurl, data, function (response) {
                     alert('Email saved successfully!');
                 });
             });
@@ -57,12 +58,30 @@ function stoff_settings_admin_callback() {
 }
 
 // AJAX handler function to save email
-add_action('wp_ajax_save_email', 'save_email_callback');
+add_action( 'wp_ajax_save_email', 'save_email_callback' );
 
 function save_email_callback() {
-    if (isset($_POST['email'])) {
-        $email = sanitize_email($_POST['email']);
-        update_option('stoff-set-email', $email);
+    if ( isset ( $_POST['email'] ) ) {
+        $email = sanitize_email( $_POST['email'] );
+        update_option( 'stoff-set-email', $email );
         echo 'success';
     }
+}
+
+
+// Create sub menu page
+function stoff_enquiries() {
+    add_submenu_page(
+        'stoff-settings',
+        'Enquires',
+        'Enquires',
+        'manage_options',
+        'enquires',
+        'stoff_enquires_html'
+    );
+}
+add_action( 'admin_menu', 'stoff_enquiries' );
+
+function stoff_enquires_html() {
+
 }
