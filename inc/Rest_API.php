@@ -1,17 +1,8 @@
 <?php
 
-require_once ( ABSPATH . 'wp-load.php' );
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-// require autoloader
-require_once STOFF_PLUGIN_PATH . '/vendor/autoload.php';
-
 // Check if form data is empty
 if ( !empty ( $_POST ) ) {
     $data = $_POST;
-
-    print_r( $data );
 
     $website          = $data['website'] ?? '';
     $launched         = $data['lanced'] ?? '';
