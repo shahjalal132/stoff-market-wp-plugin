@@ -51,6 +51,26 @@ function stoff_settings_admin_callback() {
                     alert('Email saved successfully!');
                 });
             });
+
+            // Check for new enquiries every 30 seconds
+            setInterval(checkNewEnquiries, 5000);
+
+            function checkNewEnquiries() {
+                $.ajax({
+                    type: 'POST',
+                    url: ajaxurl,
+                    data: {
+                        'action': 'check_new_enquiries'
+                    },
+                    success: function (response) {
+                        if (response > 0) {
+                            $('#enquiries-notification').html('<span class="update-plugins count-' + response + '"><span class="plugin-count">' + response + '</span></span>');
+                        } else {
+                            $('#enquiries-notification').html('');
+                        }
+                    }
+                });
+            }
         });
     </script>
 
@@ -69,12 +89,24 @@ function save_email_callback() {
 }
 
 
+// AJAX handler function to check for new enquiries
+add_action( 'wp_ajax_check_new_enquiries', 'check_new_enquiries_callback' );
+
+function check_new_enquiries_callback() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'enquires';
+    $count      = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" );
+    echo $count;
+    die();
+}
+
+
 // Create sub menu page
 function stoff_enquiries() {
     add_submenu_page(
         'stoff-settings',
         'Enquires',
-        'Enquires',
+        '<div class="inquires">Enquires <span id="enquiries-notification"></span></div>',
         'manage_options',
         'enquires',
         'stoff_enquires_html'
@@ -196,7 +228,7 @@ function stoff_enquires_html() {
     </div>
 
     <!-- Pagination -->
-    <div class="pagination float-end me-2 mt-2">
+    <div class="sf-pagination float-end me-2 mt-2">
 
         <?php
         $total_items = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" );
