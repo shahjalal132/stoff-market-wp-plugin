@@ -1,9 +1,4 @@
-#user-infos-table {
-  padding-top: 20px;
-  border-top: 1px solid #ccc;
-}
-
-.page-numbers {
+.sf-pagination .page-numbers {
   position: relative;
   color: #2271b1;
   text-decoration: none;
@@ -15,28 +10,28 @@
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.current {
+.sf-pagination .current {
   z-index: 3;
   color: #fff;
   background-color: #2271b1;
   border-color: #2271b1;
 }
 
-.btn-outline-success {
+.sf-pagination .btn-outline-success {
   color: #2271b1 !important;
   border-color: #2271b1 !important;
 }
 
-.btn-outline-success:hover {
+.sf-pagination .btn-outline-success:hover {
   color: #fff !important;
   background-color: #2271b1;
   border-color: #2271b1;
 }
 
-#stoff-enquires-table{
-    width: max-content;
+#stoff-enquires-table {
+  width: max-content;
 }
 
-#stoff-enquires-table .widefat{
-    width: inherit;
+#stoff-enquires-table .widefat {
+  width: inherit;
 }
